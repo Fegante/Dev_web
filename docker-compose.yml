@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  frontend:
+    image: ticketbrabofrontend
+    volumes:
+     - ./ticketbrabo-frontend:/usr/src/app
+    build:
+      context: ticketbrabo-frontend
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:4200
+    command: npm start

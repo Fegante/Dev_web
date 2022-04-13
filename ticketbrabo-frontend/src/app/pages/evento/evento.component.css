@@ -1,0 +1,48 @@
+.eventoPage{
+    display: flex;
+    flex-direction: row;
+}
+.evento{
+    margin-top: 0px;
+    margin-left: 15%;  /* SIDEBAR WIDTH */
+    width: 60%;
+    height: 100vh;
+    border-right: 1px solid var(--grayDefault);
+}
+
+header{
+    padding-top: 20px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
+
+header h1{
+    font-size: 30px;
+}
+
+.evento header .back{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: none;
+}
+.evento header .back:hover{
+    opacity: .3;
+}
+
+.evento header .back svg{
+    line-height: 2.7em;
+}
+.eventoEstatistica{
+    width: 25%;
+    height: 100vh;
+}
+
+/* SEARCH INPUT */
+.searchInput{
+    padding-left: 30px;
+    margin-top: 4rem;
+}

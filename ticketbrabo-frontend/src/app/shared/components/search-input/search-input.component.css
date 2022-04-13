@@ -1,0 +1,22 @@
+.searchComponent{
+    max-height: 35px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+.searchComponent .search{
+    width: 400px;
+    height: 35px;
+    border: 0px;
+    padding-left: 10px;
+    outline: none;
+    background-color: var(--grayDefault);
+}
+
+.searchComponent div{
+    width: 30px;
+    line-height: 3rem;
+    background-color: var(--grayDefault);
+
+}

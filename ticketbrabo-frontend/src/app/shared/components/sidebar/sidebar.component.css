@@ -1,0 +1,93 @@
+.sidebar{
+   width: 15%;
+   background-color: #fff;
+   height: 100vh;
+   position: fixed;
+   top: 0%;
+   left: 0%;
+   border-right: 2px solid var(--grayDefault);
+   display: flex;
+   flex-direction: column;
+}
+
+.sidebar .brand{
+    width: 50%;
+    height: 100px;
+    background-image: url('src/assets/images/logo.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 2em auto;
+}
+
+.sidebar ul{
+    margin: 0 auto;
+    list-style: none;
+}
+
+.sidebar ul .menuItem{
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    column-gap: 1.5em;
+    color: var(--grayText);
+    cursor: pointer;
+    padding-right: 20px;
+
+    /* align-items: center; */
+}
+
+.menuItemImagem{
+    width: 24px;
+    height: 24px;
+    align-self: center;
+}
+.menuItemTexto{
+    flex-grow: 2;
+    font-size: 14px;
+    text-align: left;
+}
+
+.iconSvg{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.menuItem:hover > .menuItemTexto{
+    color: var(--hoverColor);
+}
+
+
+/*  ICONS */
+.iconActive{
+    color: var(--hoverColor);
+}
+.iconEvento{
+    background-image: url('src/assets/svgs/Home.svg');
+}
+
+.menuItem:hover > .iconEvento, .iconEventoActiveIcon{
+    background-image: url('src/assets/svgs/HomeHover.svg');
+}
+
+
+
+
+.iconProduto{
+    background-image: url('src/assets/svgs/Folder.svg');
+}
+
+.menuItem:hover > .iconProduto{
+    background-image: url('src/assets/svgs/FolderHover.svg');
+}
+
+.menuItem:active > .iconEvento{
+    background-image: url('src/assets/svgs/CategoryHover.svg');
+}
