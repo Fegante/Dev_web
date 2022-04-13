@@ -3,6 +3,7 @@
     --grayDefault: #F0F0F0;
     --grayText: #C4C4C4;
     --hoverColor: #369FFF;
+    --grayBgInput: #FAFAFA;
 }
 
 *, body, ul{

@@ -1,0 +1,8 @@
+<div class="cardItem" *ngFor="let card of listCard">
+    <div class="image" [style.backgroundImage]="'url('+card.image+')'"></div>
+    <div class="content">
+        <div class="title">{{card.title}}</div>
+        <div class="date">{{card.date}}</div>
+        <div class="info">{{card.info}}</div>
+    </div>
+</div>

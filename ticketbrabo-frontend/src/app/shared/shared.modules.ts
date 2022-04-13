@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { CardcoloredComponent } from "./components/cardcolored/cardcolored.component";
+import { ListCardComponent } from "./components/list-card/list-card.component";
 import { SearchInputComponent } from "./components/search-input/search-input.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 
@@ -11,6 +12,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
         SidebarComponent,
         CardcoloredComponent,
         SearchInputComponent,
+        ListCardComponent
     ],
     imports: [
         CommonModule,
@@ -19,7 +21,8 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
     exports: [
         SidebarComponent,
         CardcoloredComponent,
-        SearchInputComponent
+        SearchInputComponent,
+        ListCardComponent
     ]
   
 })
