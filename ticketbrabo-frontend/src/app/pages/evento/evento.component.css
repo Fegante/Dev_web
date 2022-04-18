@@ -10,6 +10,7 @@
     border-right: 1px solid var(--grayDefault);
 }
 
+/* HEADERS  */
 header{
     padding-top: 20px;
     padding-left: 30px;
@@ -21,6 +22,7 @@ header{
 
 header h1{
     font-size: 30px;
+    font-weight: bold;
 }
 
 .evento header .back{
@@ -36,6 +38,22 @@ header h1{
 .evento header .back svg{
     line-height: 2.7em;
 }
+
+header h2{
+    font-size: 25px;
+    font-weight: bold;
+}
+/* FIM HEADERS */
+
+
+/* PRODUTOS EVENTOS */
+.produtosEvento{
+    margin-top: 30px;
+}
+/* FIM PRODUTOS EVENTOS */
+
+
+
 .eventoEstatistica{
     width: 25%;
     height: 100vh;
@@ -47,7 +65,60 @@ header h1{
     margin-top: 4rem;
 }
 
+/* LIST EVENTS */
 .list-eventos{
     margin-left: 30px;
     margin-top: 30px;
+    padding-bottom: 10px;
+    height: 600px;
+    overflow-x: hidden;
+    border-bottom: 1px solid #eee;
+    border-bottom-right-radius: 50px;
 }
+
+.list-eventos app-list-card{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 420px);
+    row-gap: 10px;
+    column-gap: 50px;
+}
+
+
+/* LIST PRODUTOS EVENTO */
+.listProductEvent{
+    margin-left: 30px;
+    padding-bottom: 10px;
+}
+.listProductEvent app-cardColored{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
+    row-gap: 40px;
+   
+   
+}
+/* SCROLLBAR */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    display: none;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  .list-eventos:hover + ::-webkit-scrollbar{
+      display: block;
+  }

@@ -1,8 +1,27 @@
-<div class="cardItem" *ngFor="let card of listCard">
+<div class="cardItem" id="{{card.id}}" *ngFor="let card of listCard" (click)="onClickCard(card.id, $event)">
     <div class="image" [style.backgroundImage]="'url('+card.image+')'"></div>
     <div class="content">
         <div class="title">{{card.title}}</div>
         <div class="date">{{card.date}}</div>
         <div class="info">{{card.info}}</div>
+    </div>
+
+    <div class="buttonMore">
+        <button mat-icon-button [ngStyle]="{width: '60px', height:'60px'}" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" fill="none" stroke="var(--grayText)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+            </button>
+            <button mat-menu-item disabled>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Desativar notificações</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Excluir</span>
+            </button>
+        </mat-menu>
     </div>
 </div>

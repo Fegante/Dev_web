@@ -1,1 +1,24 @@
-<p>cardcolored works!</p>
+
+<div class="card" *ngFor="let card of cards" [style.backgroundColor]="card.bgColor">
+    <div class="left">
+        <div class="title">{{card.title}}</div>
+        <div class="subtitle">{{card.quantityTotal - card.quantity}} Restantes</div>
+        <div class="statistic">
+
+            <div class="bgSpinner">
+                <div class="value">{{(card.quantity/card.quantityTotal)*100}}</div>
+                <mat-progress-spinner 
+                class="spinner" 
+                [diameter]="40" 
+                [color]="color" 
+                [mode]="mode"
+                [value]="(card.quantity/card.quantityTotal)*100">
+                </mat-progress-spinner>
+            </div>
+      
+        </div>
+    </div>
+    <div class="right">
+        <img src="\assets\images\water_bottle.png">
+    </div>
+</div>
