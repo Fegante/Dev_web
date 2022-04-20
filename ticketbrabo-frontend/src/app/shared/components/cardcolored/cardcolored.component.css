@@ -1,6 +1,6 @@
 .card{
     background-color: var(--hoverColor);
-    width: 250px;
+    width: 230px;
     height: 100px;
     border-radius: 20px;
     display: flex;

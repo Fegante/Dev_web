@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-input',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchInputComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router, private activedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+
+  clickButtonCreate(){
+    this.router.navigate(["new"], {relativeTo: this.activedRoute});
   }
 
 }

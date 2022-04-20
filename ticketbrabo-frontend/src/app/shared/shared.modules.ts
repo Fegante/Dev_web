@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MenuLoggedComponent } from "./components/menu-logged/menu-logged.component";
+import { CadastroComponent } from "./pages/cadastro/cadastro.component";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MenuLoggedComponent } from "./components/menu-logged/menu-logged.compon
         CardcoloredComponent,
         SearchInputComponent,
         ListCardComponent,
-        MenuLoggedComponent
+        MenuLoggedComponent,
+        CadastroComponent
     ],
     imports: [
         CommonModule,
@@ -33,7 +35,8 @@ import { MenuLoggedComponent } from "./components/menu-logged/menu-logged.compon
         CardcoloredComponent,
         SearchInputComponent,
         ListCardComponent,
-        MenuLoggedComponent
+        MenuLoggedComponent,
+        CadastroComponent
     ]
   
 })
