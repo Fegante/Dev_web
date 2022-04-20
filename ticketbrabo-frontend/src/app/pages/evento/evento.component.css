@@ -12,7 +12,7 @@
 
 /* HEADERS  */
 header{
-    padding-top: 20px;
+    padding-top: 35px;
     padding-left: 30px;
     display: flex;
     flex-direction: row;
@@ -47,9 +47,7 @@ header h2{
 
 
 /* PRODUTOS EVENTOS */
-.produtosEvento{
-    margin-top: 30px;
-}
+
 /* FIM PRODUTOS EVENTOS */
 
 
@@ -62,7 +60,7 @@ header h2{
 /* SEARCH INPUT */
 .searchInput{
     padding-left: 30px;
-    margin-top: 4rem;
+    margin-top: 1rem;
 }
 
 /* LIST EVENTS */
@@ -70,7 +68,7 @@ header h2{
     margin-left: 30px;
     margin-top: 30px;
     padding-bottom: 10px;
-    height: 600px;
+    height: 500px;
     overflow-x: hidden;
     border-bottom: 1px solid #eee;
     border-bottom-right-radius: 50px;

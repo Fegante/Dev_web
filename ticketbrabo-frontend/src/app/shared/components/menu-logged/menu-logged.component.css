@@ -1,0 +1,56 @@
+
+.menuLogged{
+    display: grid;
+    grid-template-columns: 50px auto;
+    column-gap: 40px;
+    max-width: 250px;
+    height: 60px;
+    max-height: 60px;
+    align-items: center;
+    position: absolute;
+    right: 10%;
+    top: 15px;
+}
+
+.notification{
+    text-align: center;
+    height: 40px;
+    line-height: 2.5rem;
+}
+
+.cardLogin{
+    display: grid;
+    grid-template-columns: 40px 100px auto;
+    column-gap: 15px;
+    background-color: #369FFF33;
+    align-items: center;
+    border-radius: 5px;
+ 
+}
+.image{
+    padding-left: 5px;
+    padding-top: 5px;
+}
+.info{
+    display: grid;
+    grid-template-rows: 15px;
+}
+
+.name{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.role{
+    font-size: 12px;
+    color: #369FFF;
+}
+
+mat-icon.notification{
+    color: rgb(104, 104, 104);
+}
+
+.notification:hover, .cardLogin:hover{
+    cursor: pointer;
+    opacity: .7;
+}

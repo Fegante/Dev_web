@@ -1,13 +1,14 @@
 
-<div class="card" *ngFor="let card of cards" [style.backgroundColor]="card.bgColor">
+<div class="card" *ngFor="let card of cards" [style]="{'background-color':card.bgColor, 'box-shadow': '0px 10px 30px '+card.bgColor+'77'}">
     <div class="left">
         <div class="title">{{card.title}}</div>
         <div class="subtitle">{{card.quantityTotal - card.quantity}} Restantes</div>
         <div class="statistic">
 
-            <div class="bgSpinner">
+            <div class="bgSpinner" [style]="{'--colorSpinnerBg': card.colorSpinnerBg || '#aaaaaa25'}">
                 <div class="value">{{(card.quantity/card.quantityTotal)*100}}</div>
                 <mat-progress-spinner 
+                [style]="{'--colorSpinner': card.colorSpinner || '#fff'}"
                 class="spinner" 
                 [diameter]="40" 
                 [color]="color" 

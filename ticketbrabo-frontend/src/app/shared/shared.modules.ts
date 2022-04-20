@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MenuLoggedComponent } from "./components/menu-logged/menu-logged.component";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         SidebarComponent,
         CardcoloredComponent,
         SearchInputComponent,
-        ListCardComponent
+        ListCardComponent,
+        MenuLoggedComponent
     ],
     imports: [
         CommonModule,
@@ -30,7 +32,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         SidebarComponent,
         CardcoloredComponent,
         SearchInputComponent,
-        ListCardComponent
+        ListCardComponent,
+        MenuLoggedComponent
     ]
   
 })
