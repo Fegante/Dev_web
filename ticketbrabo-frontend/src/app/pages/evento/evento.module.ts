@@ -14,6 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.modules';
     CommonModule,
     EventoRoutingModule,
     SharedModule
+  ],
+  providers: [
   ]
 })
 export class EventoModule { }

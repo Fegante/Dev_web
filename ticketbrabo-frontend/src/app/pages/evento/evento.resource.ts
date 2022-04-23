@@ -1,5 +1,5 @@
 
-interface IFormItem {
+export interface IFormItem {
     label: string;
     placeholder: string;
     name: string;
@@ -15,8 +15,8 @@ export const formItem: [IFormItem] = [
     {
         label: 'Nome',
         placeholder: 'Nome do Evento',
-        name:'eventName',
-        id: 'eventName',
+        name:'eventName2',
+        id: 'eventName2',
         type:  FormItemTypeEnum.TEXT
     }
 ];
