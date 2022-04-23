@@ -4,6 +4,7 @@
     --grayText: #C4C4C4;
     --hoverColor: #369FFF;
     --grayBgInput: #FAFAFA;
+    --softBlue: #ebf6ff;
 }
 
 *, body, ul{
@@ -11,5 +12,5 @@
     padding:0;
     font-family: 'Roboto', sans-serif;
 }
-html, body { height: 100%; }
+html, body { height: 100%; box-sizing: border-box;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

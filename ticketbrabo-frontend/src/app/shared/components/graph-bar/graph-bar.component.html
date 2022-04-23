@@ -1,0 +1,10 @@
+<div class="graphBar">
+    <div class="bar" 
+        [style.height]="this.calculateBarSize(bar.quantity)" 
+        [style.backgroundColor]="this.maxQuantitySale == bar.quantity ? 'var(--hoverColor)' : 'var(--softBlue)'"
+        *ngFor="let bar of this.salesPoint">
+
+        <div class="label" [style.marginTop]="this.calculateBarSize(bar.quantity)">{{bar.label}}</div>
+    </div>
+    
+</div>

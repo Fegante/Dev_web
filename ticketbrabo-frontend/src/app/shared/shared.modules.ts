@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MenuLoggedComponent } from "./components/menu-logged/menu-logged.component";
 import { CadastroComponent } from "./pages/cadastro/cadastro.component";
+import { CardSimpleComponent } from "./components/card-simple/card-simple.component";
+import { GraphBarComponenet } from "./components/graph-bar/graph-bar.component";
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { CadastroComponent } from "./pages/cadastro/cadastro.component";
         SearchInputComponent,
         ListCardComponent,
         MenuLoggedComponent,
-        CadastroComponent
+        CadastroComponent,
+        CardSimpleComponent,
+        GraphBarComponenet
     ],
     imports: [
         CommonModule,
@@ -36,7 +40,9 @@ import { CadastroComponent } from "./pages/cadastro/cadastro.component";
         SearchInputComponent,
         ListCardComponent,
         MenuLoggedComponent,
-        CadastroComponent
+        CadastroComponent,
+        CardSimpleComponent,
+        GraphBarComponenet
     ]
   
 })

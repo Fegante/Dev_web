@@ -1,0 +1,9 @@
+<div class="cardSimple" [style]="{width: this.width+'px', height: this.height+'px'}" *ngFor="let card of cards">
+    <div class="label">{{card.label}}</div>
+    <div class="description">
+        <span class="bar"></span>
+        <span class="value">
+            {{card.value}}
+        </span>
+    </div>
+</div>

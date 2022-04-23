@@ -27,11 +27,30 @@
             <app-list-card></app-list-card>
         </section>
 
-
     </section>
-    <section class="eventoEstatistica">
-        <div class="cardEstatistica">
+
+    <section class="eventStatistic">
+        <div class="cardStatistic">
+            <header>
+                <h2>Estatítsticas</h2>
+            </header>
+
+            <div class="cardSimples">
+                <app-card-simple [width]="130" [height]="130"></app-card-simple>
+            </div>
+        </div>
+
+        <div class="cardGraph">
+            <header>
+                <h2>
+                    Pontos de Vendas
+                </h2>
+            </header>
             
+            <div class="graphBar">
+                <app-graph-bar></app-graph-bar>
+            </div>
         </div>
     </section>
+    
 </div>

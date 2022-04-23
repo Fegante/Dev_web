@@ -1,0 +1,19 @@
+.graphBar{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 20px);
+    align-items: baseline;
+    column-gap: 10px;
+}
+.bar{
+    width: 20px;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #369FFF22;
+}
+
+
+.label{
+    font-size: 11px;
+    text-align: center;
+    color: #111;
+}
