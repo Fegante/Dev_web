@@ -1,0 +1,18 @@
+<div class="register">
+    <header>
+        <mat-icon class="arrowBack" (click)="onClickBack()">arrow_back</mat-icon>
+        <h1>Cadastrar</h1>
+    </header>
+    <form [formGroup]="this.form">
+        <div *ngFor="let input of this.schema.fields">
+            <label for="{{input.id}}">{{input.label}}:</label>
+            <input 
+                [type]="input.type" 
+                [name]="input.name" 
+                [id]="input.id"
+                [placeholder]="input.placeholder">
+        </div>
+
+        <button type="submit">Salvar {{this.schema.resourceName}}</button>
+    </form>
+</div>
