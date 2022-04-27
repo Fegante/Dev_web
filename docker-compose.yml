@@ -11,5 +11,25 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - 3000:4200
+      - 4200:4200
     command: npm start
+  backend:
+    image: ticketbrabobackend
+    volumes:
+      - ./ticketbrabo-backend:/usr/src/app
+    build:
+      context: ticketbrabo-backend
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    command: npm run start:dev
+  db:
+   image: postgres
+   volumes:
+    - ./ticketbrabo-backend/src/pre-start/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+   ports:
+    - 5432:5432
+   environment:
+    POSTGRES_USER: ticketbrabo
+    POSTGRES_PASSWORD: ticketbrabo_11
+   

@@ -1,15 +1,19 @@
 import { Pessoa } from "./commons/pessoa-model";
 
 export class Vendedor extends Pessoa{
-    private _dataInicioContrato: Date;
-    private _dataFimContrato: Date;
-    private _cargo: string;
     
-    constructor(id: number, name: string, email: string, cpf: string, cnpj:  string, telefone: string, dataInicioContrato: Date, dataFimContrato: Date, cargo: string){
+    constructor(
+        id: number, 
+        name: string, 
+        email: string, 
+        cpf: string, 
+        cnpj:  string, 
+        telefone: string, 
+        protected _dataInicioContrato: Date, 
+        protected _dataFimContrato: Date, 
+        protected _cargo: string){
+
         super(id, name, email, cnpj, cpf, telefone);
-        this._dataInicioContrato = dataInicioContrato;
-        this._dataFimContrato = dataFimContrato;
-        this._cargo = cargo;
     }
 
     public get dataInicioContrato(): Date {
@@ -34,8 +38,6 @@ export class Vendedor extends Pessoa{
     public set cargo(value: string) {
         this._cargo = value;
     }
-
-    
     
 }
 

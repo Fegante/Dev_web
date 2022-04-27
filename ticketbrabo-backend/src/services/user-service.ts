@@ -1,5 +1,5 @@
 import userRepo from '@repos/user-repo';
-import { IUser } from '@models/user-model';
+import { Pessoa } from '@models/commons/pessoa-model';
 import { UserNotFoundError } from '@shared/errors';
 
 
@@ -9,7 +9,7 @@ import { UserNotFoundError } from '@shared/errors';
  * 
  * @returns 
  */
-function getAll(): Promise<IUser[]> {
+function getAll(): Promise<Pessoa[]> {
     return userRepo.getAll();
 }
 
@@ -20,7 +20,7 @@ function getAll(): Promise<IUser[]> {
  * @param user 
  * @returns 
  */
-function addOne(user: IUser): Promise<void> {
+function addOne(user: Pessoa): Promise<void> {
     return userRepo.add(user);
 }
 
@@ -31,7 +31,7 @@ function addOne(user: IUser): Promise<void> {
  * @param user 
  * @returns 
  */
-async function updateOne(user: IUser): Promise<void> {
+async function updateOne(user: Pessoa): Promise<void> {
     const persists = await userRepo.persists(user.id);
     if (!persists) {
         throw new UserNotFoundError();

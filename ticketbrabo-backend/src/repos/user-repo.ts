@@ -1,17 +1,11 @@
-import { IUser } from '@models/user-model';
+import { AppDataSource } from '@configs/db';
+import { Pessoa } from '@models/commons/pessoa-model';
 import { getRandomInt } from '@shared/functions';
 import orm from './mock-orm';
 
-
-
-/**
- * Get one user.
- * 
- * @param email 
- * @returns 
- */
-async function getOne(email: string): Promise<IUser | null> {
+async function getOne(email: string): Promise<Pessoa | null> {
     const db = await orm.openDb();
+
     for (const user of db.users) {
         if (user.email === email) {
             return user;
@@ -42,8 +36,15 @@ async function persists(id: number): Promise<boolean> {
  * 
  * @returns 
  */
-async function getAll(): Promise<IUser[]> {
+async function getAll(): Promise<Pessoa[]> {
     const db = await orm.openDb();
+   
+    const users = await AppDataSource.getRepository(Pessoa);
+
+
+    console.log(await users.find());
+
+
     return db.users;
 }
 
@@ -54,7 +55,7 @@ async function getAll(): Promise<IUser[]> {
  * @param user 
  * @returns 
  */
-async function add(user: IUser): Promise<void> {
+async function add(user: Pessoa): Promise<void> {
     const db = await orm.openDb();
     user.id = getRandomInt();
     db.users.push(user);
@@ -68,7 +69,7 @@ async function add(user: IUser): Promise<void> {
  * @param user 
  * @returns 
  */
-async function update(user: IUser): Promise<void> {
+async function update(user: Pessoa): Promise<void> {
     const db = await orm.openDb();
     for (let i = 0; i < db.users.length; i++) {
         if (db.users[i].id === user.id) {

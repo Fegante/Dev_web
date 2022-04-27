@@ -25,7 +25,8 @@
     "@entities": "dist/entities",
     "@shared": "dist/shared",
     "@server": "dist/server",
-    "@routes": "dist/routes"
+    "@routes": "dist/routes",
+    "@configs": "dist/configs"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -72,7 +73,10 @@
     "jet-logger": "^1.1.5",
     "jsonfile": "^6.1.0",
     "module-alias": "^2.2.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.6"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.2.0",
@@ -84,6 +88,7 @@
     "@types/jsonfile": "^6.1.0",
     "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.25",
+    "@types/pg": "^8.6.5",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
@@ -94,6 +99,7 @@
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2",
     "ts-node": "^10.7.0",
+    "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.14.1",
     "typescript": "^4.6.3"
   }

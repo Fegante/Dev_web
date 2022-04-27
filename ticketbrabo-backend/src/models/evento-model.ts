@@ -1,24 +1,12 @@
 export class Evento {
-    private _dataHoraInicio: Date;
-    private _dataHoraFim: Date;
-    private _nome: string;
-    private _totalInvestido: number;
-    private _totalReceita: number;
-    private _local: string;
-
-    constructor(dataHoraInicio: Date,
-        dataHoraFim: Date,
-        nome: string,
-        totalInvestido: number,
-        totalReceita: number,
-        local: string) {
-
-        this._dataHoraInicio = dataHoraInicio;
-        this._dataHoraFim = dataHoraFim;
-        this._nome = nome;
-        this._totalInvestido = totalInvestido;
-        this._totalReceita = totalReceita;
-        this._local = local;
+  
+    constructor(
+        protected _dataHoraInicio: Date,
+        protected _dataHoraFim: Date,
+        protected _nome: string,
+        protected _totalInvestido: number,
+        protected _totalReceita: number,
+        protected _local: string) {
 
     }
 

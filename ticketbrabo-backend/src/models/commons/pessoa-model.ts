@@ -1,19 +1,24 @@
-export abstract class Pessoa{
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity()
+export class Pessoa {
+ 
+    @PrimaryGeneratedColumn('rowid')
     id: number;
-    name: string;
-    email: string;
+    
+    @Column({nullable: true, name:"nome", type: "varchar"})
+    nome: string;
+
+    // @Column({nullable: true})
+    // email: string;
+    
+    @Column({nullable: true})
     cpf: string;
+    
+    @Column({nullable: true})
     cnpj: string;
+
+    @Column({nullable: true})
     telefone: string;
-
-    constructor(id: number, name: string, email: string, cpf: string, cnpj:  string, telefone: string){
-        this.id = id;
-        this.name = name;
-        this.email =  email;
-        this.cpf = cpf;
-        this.cnpj = cnpj;
-        this.telefone = telefone;
-    }
-
 
 }

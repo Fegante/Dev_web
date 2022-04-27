@@ -24,6 +24,7 @@ export const p = {
  * Get all users.
  */
 router.get(p.get, async (_: Request, res: Response) => {
+    console.log("router")
     const users = await userService.getAll();
     return res.status(OK).json({users});
 });
