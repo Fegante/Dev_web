@@ -1,6 +1,7 @@
-import { Column, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Local } from "@models/commons/local-model";
 
+@Entity()
 export class PontoVenda {
 
     @PrimaryGeneratedColumn()

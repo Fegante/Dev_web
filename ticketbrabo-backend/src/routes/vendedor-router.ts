@@ -1,7 +1,7 @@
 import StatusCodes from 'http-status-codes';
 import { Request, Response, Router } from 'express';
 
-import userService from '@services/user-service';
+import vendedorService from '@services/vendedor-service';
 import { ParamMissingError } from '@shared/errors';
 
 
@@ -20,19 +20,12 @@ export const p = {
 
 
 
-/**
- * Get all users.
- */
 router.get(p.get, async (_: Request, res: Response) => {
-    console.log("router")
-    const users = await userService.getAll();
+    const users = await vendedorService.getAll();
     return res.status(OK).json({users});
 });
 
 
-/**
- * Add one user.
- */
 router.post(p.add, async (req: Request, res: Response) => {
     const { user } = req.body;
     // Check param
@@ -40,14 +33,10 @@ router.post(p.add, async (req: Request, res: Response) => {
         throw new ParamMissingError();
     }
     // Fetch data
-    await userService.addOne(user);
+    await vendedorService.addOne(user);
     return res.status(CREATED).end();
 });
 
-
-/**
- * Update one user.
- */
 router.put(p.update, async (req: Request, res: Response) => {
     const { user } = req.body;
     // Check param
@@ -55,14 +44,11 @@ router.put(p.update, async (req: Request, res: Response) => {
         throw new ParamMissingError();
     }
     // Fetch data
-    await userService.updateOne(user);
+    await vendedorService.updateOne(user);
     return res.status(OK).end();
 });
 
 
-/**
- * Delete one user.
- */
 router.delete(p.delete, async (req: Request, res: Response) => {
     const { id } = req.params;
     // Check param
@@ -70,7 +56,7 @@ router.delete(p.delete, async (req: Request, res: Response) => {
         throw new ParamMissingError();
     }
     // Fetch data
-    await userService.delete(Number(id));
+    await vendedorService.delete(Number(id));
     return res.status(OK).end();
 });
 

@@ -1,10 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity_ } from "./commons/baseEntity-model";
+import { ReservaEstoque } from "./reserva-estoque-model";
 
 @Entity()
-export class Evento {
-  
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Evento extends BaseEntity_{
 
     @Column()
     dataHoraInicio: Date;
@@ -23,5 +22,10 @@ export class Evento {
     
     @Column()
     local: string;
+
+
+    @OneToOne(() => ReservaEstoque)
+    @JoinColumn()
+    reservaEstoque: ReservaEstoque;
 
 }

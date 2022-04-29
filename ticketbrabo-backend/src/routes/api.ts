@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import userRouter from './user-router';
+import vendedorRouter from './vendedor-router';
 import eventoRouter from './evento-router';
 
 // Export the base-router
 const baseRouter = Router();
 
 // Setup routers
-baseRouter.use('/users', userRouter);
-baseRouter.use('eventos', eventoRouter);
+baseRouter.use('/vendedores', vendedorRouter);
+baseRouter.use('/eventos', eventoRouter);
 
 // Export default.
 export default baseRouter;

@@ -1,9 +1,9 @@
 import { AppDataSource } from '@configs/db';
-import { Pessoa } from '@models/commons/pessoa-model';
+import { Vendedor } from '@models/vendedor-model';
 import { getRandomInt } from '@shared/functions';
 import orm from './mock-orm';
 
-async function getOne(email: string): Promise<Pessoa | null> {
+async function getOne(email: string): Promise<Vendedor | null> {
     const db = await orm.openDb();
 
     for (const user of db.users) {
@@ -15,11 +15,6 @@ async function getOne(email: string): Promise<Pessoa | null> {
 }
 
 
-/**
- * See if a user with the given id exists.
- * 
- * @param id 
- */
 async function persists(id: number): Promise<boolean> {
     const db = await orm.openDb();
     for (const user of db.users) {
@@ -31,15 +26,10 @@ async function persists(id: number): Promise<boolean> {
 }
 
 
-/**
- * Get all users.
- * 
- * @returns 
- */
-async function getAll(): Promise<Pessoa[]> {
+async function getAll(): Promise<Vendedor[]> {
     const db = await orm.openDb();
    
-    const users = await AppDataSource.getRepository(Pessoa);
+    const users = await AppDataSource.getRepository(Vendedor);
 
 
     console.log(await users.find());
@@ -49,27 +39,14 @@ async function getAll(): Promise<Pessoa[]> {
 }
 
 
-/**
- * Add one user.
- * 
- * @param user 
- * @returns 
- */
-async function add(user: Pessoa): Promise<void> {
+async function add(user: Vendedor): Promise<void> {
     const db = await orm.openDb();
     user.id = getRandomInt();
     db.users.push(user);
     return orm.saveDb(db);
 }
 
-
-/**
- * Update a user.
- * 
- * @param user 
- * @returns 
- */
-async function update(user: Pessoa): Promise<void> {
+async function update(user: Vendedor): Promise<void> {
     const db = await orm.openDb();
     for (let i = 0; i < db.users.length; i++) {
         if (db.users[i].id === user.id) {
@@ -79,13 +56,6 @@ async function update(user: Pessoa): Promise<void> {
     }
 }
 
-
-/**
- * Delete one user.
- * 
- * @param id 
- * @returns 
- */
 async function deleteOne(id: number): Promise<void> {
     const db = await orm.openDb();
     for (let i = 0; i < db.users.length; i++) {

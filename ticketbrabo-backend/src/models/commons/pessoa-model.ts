@@ -1,11 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity_ } from "./baseEntity-model";
 
 @Entity()
-export abstract class Pessoa {
+export abstract class Pessoa extends BaseEntity_{
  
-    @PrimaryGeneratedColumn('rowid')
-    id: number;
-    
     @Column({nullable: true, name:"nome", type: "varchar"})
     nome: string;
 
