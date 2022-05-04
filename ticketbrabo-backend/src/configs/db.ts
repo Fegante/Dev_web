@@ -42,7 +42,6 @@ export const AppDataSource = new DataSource({
     migrations: []
   });
   
-  //"../models/*.ts"
   
   AppDataSource.initialize()
       .then(() => {
