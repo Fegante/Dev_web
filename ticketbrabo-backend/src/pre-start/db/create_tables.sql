@@ -20,3 +20,16 @@ VALUES
   ('Veda Fowler','76','6','1-645-322-6444',''),
   ('Peter Walker','44','1','1-238-883-7610',''),
   ('Shad Robles','63','9','(861) 348-3797','');
+
+
+CREATE TABLE VENDEDOR (
+  id_pessoa int not null,
+  dataInicioContrato date not null,
+  dataFimContrato date not null,
+
+  CONSTRAINT fk_pessoa 
+  FOREIGN KEY (id_pessoa)
+  REFERENCES pessoa(id)
+);
+
+INSERT INTO VENDEDOR VALUES (1, '2022/04/03', '2022/05/03');

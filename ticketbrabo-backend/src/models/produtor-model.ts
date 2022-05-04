@@ -6,6 +6,5 @@ import { Evento } from "./evento-model";
 export class Produtor extends Pessoa{
     
     @OneToMany(()=>Evento, (evento) => evento.id)
-    @JoinColumn()
-    evento: Evento;
+    eventos: Evento[];
 }

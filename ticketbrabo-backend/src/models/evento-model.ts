@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BaseEntity_ } from "./commons/baseEntity-model";
+import { Produtor } from "./produtor-model";
 import { ReservaEstoque } from "./reserva-estoque-model";
 
 @Entity()
@@ -20,12 +21,13 @@ export class Evento extends BaseEntity_{
     @Column()
     totalReceita: number;
     
-    @Column()
+    @Column({name: "localidade"})
     local: string;
 
 
-    @OneToOne(() => ReservaEstoque)
-    @JoinColumn()
-    reservaEstoque: ReservaEstoque;
+    @OneToMany(() => ReservaEstoque, (reservaEstoque) => reservaEstoque.evento)
+    reservasEstoque: ReservaEstoque[];
 
+    @ManyToOne(() => Produtor, (produtor) => produtor.eventos)
+    produtor: Produtor;
 }

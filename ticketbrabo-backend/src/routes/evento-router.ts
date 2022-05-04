@@ -1,4 +1,6 @@
+import { Produtor } from "@models/produtor-model";
 import eventoService from "@services/evento-service";
+import produtorService from "@services/produtor-service";
 import { Router, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 
@@ -14,7 +16,7 @@ export const paths = {
 router.post(paths.add, async (req: Request, res: Response) => {
     const {evento} = req.body;
     
-    await eventoService.addOne(evento);
+    //await eventoService.addOne(evento);
 
     return res.status(CREATED).end();
 });

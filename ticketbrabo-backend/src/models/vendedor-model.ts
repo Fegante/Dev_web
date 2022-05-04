@@ -4,10 +4,10 @@ import { Pessoa } from "./commons/pessoa-model";
 @Entity()
 export class Vendedor extends Pessoa{
     
-    @Column({type: 'datetime'})
+    @Column({type: 'timestamptz'})
     dataInicioContrato: Date;
     
-    @Column({type: 'datetime'})
+    @Column({type: 'timestamptz'})
     dataFimContrato: Date;
     
     @Column()

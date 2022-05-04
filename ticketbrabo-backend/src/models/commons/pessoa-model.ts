@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Evento } from "@models/evento-model";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BaseEntity_ } from "./baseEntity-model";
 
 @Entity()
@@ -18,5 +19,4 @@ export abstract class Pessoa extends BaseEntity_{
 
     @Column({nullable: true})
     telefone: string;
-
 }

@@ -1,4 +1,5 @@
 import { Pessoa } from "@models/commons/pessoa-model";
+import { Produtor } from "@models/produtor-model";
 import { Pool } from "pg";
 import { createConnection, DataSource } from "typeorm";
 
@@ -36,7 +37,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DATABASE_NAME,
     synchronize: true,
     logging: false,
-    entities: ["../models/*.ts"],
+    entities: ["src/models/**/*.ts"],
     subscribers: [],
     migrations: []
   });

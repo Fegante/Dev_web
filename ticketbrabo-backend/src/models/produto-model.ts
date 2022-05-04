@@ -1,8 +1,9 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, JoinColumn } from "typeorm";
 import { CategoriaProduto } from "./categoria-produto-model";
+import { BaseEntity_ } from "./commons/baseEntity-model";
 
 @Entity()
-export class Produto{
+export class Produto extends BaseEntity_{
 
     @Column()
     preco: number;
@@ -10,6 +11,6 @@ export class Produto{
     @Column()
     quantidadeTotal: number;
 
-    @Column()
+    @JoinColumn()
     categoriaProduto: CategoriaProduto;
 }
