@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 import { BaseEntity_ } from "./commons/baseEntity-model";
+import { Ficha } from "./ficha-model";
 import { Produto } from "./produto-model";
 
 
@@ -12,6 +13,10 @@ export class ItemFicha extends BaseEntity_{
     @Column()
     quantidade: number;
 
+    @OneToOne(() => Produto)
     @JoinColumn()
     produto: Produto;
+
+    @ManyToOne(() => Ficha, (ficha) => ficha.itemsFicha)
+    ficha: Ficha;
 }
