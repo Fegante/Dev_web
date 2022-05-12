@@ -5,37 +5,45 @@ import produtoService from "@services/produto-service";
 
 export class FichaBuilder {
 
-    constructor(private ficha: Ficha) { }
+    constructor(private ficha: Ficha, private itemsFicha: ItemFicha[]) { }
 
     builder() {
 
-        //this.adicionarItemsFicha();
-        this.diminuirQuantidadeProduto();
+        this.gerenciarItemsFicha();
         
     }
 
-    adicionarItemsFicha() {
-        const itemsFicha: ItemFicha[] = [];
-        this.ficha.itemsFicha.forEach(async (itemFicha) => {
-            const itemResult = await itemfichaService.getOne(itemFicha.id)
-            if(itemResult != null){
-                itemsFicha.push(itemResult);
-            }
-         });
+    gerenciarItemsFicha() {
+        const itemsFichaValidos: ItemFicha[] = [];
 
-         this.ficha.itemsFicha = itemsFicha;
+        this.itemsFicha.forEach( async (itemFicha) => {
+            const itemValido = await this.adicionarItemsFicha(itemFicha);
+            //TODO diminuir quantidade estoque
+            this.diminuirQuantidadeProduto(itemValido);
+
+            itemsFichaValidos.push(itemValido);
+        });
     }
 
-    diminuirQuantidadeProduto() {
-        this.ficha.itemsFicha.forEach( itemFicha => {
+    async adicionarItemsFicha(itemFicha: ItemFicha): Promise<ItemFicha> {
+            const itemResult = itemfichaService.getOne(itemFicha.id);
+            if(itemResult == null){
+                throw "Item inválido";
+            }
+        return itemResult as Promise<ItemFicha>;
+    }
+
+    diminuirQuantidadeProduto(itemFicha: ItemFicha) {
             const produto = itemFicha.produto;
             produto.quantidadeTotal = produto.quantidadeTotal - itemFicha.quantidade;
-            if(produto.quantidadeTotal <0 ){
-                throw "Quantidade insuficiente";
-            }
-        });
-
+            this.validarQuantidadeProduto(produto.quantidadeTotal);
     }
 
-
+    validarQuantidadeProduto(quantidadeTotal: number){
+        if(quantidadeTotal <0 ){
+            throw "Quantidade insuficiente";
+        } else if(quantidadeTotal == 0){
+            throw "Produto não disponível";
+        }
+    }
 }
