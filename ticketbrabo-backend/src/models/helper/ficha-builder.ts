@@ -10,7 +10,8 @@ export class FichaBuilder {
     builder() {
 
         //this.adicionarItemsFicha();
-        this.diminuirQuantidadeProduto();
+        //this.diminuirQuantidadeProduto();
+        
         
     }
 
