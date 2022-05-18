@@ -25,8 +25,8 @@ services:
     command: npm run start:dev
   db:
    image: postgres
-   volumes:
-    - ./ticketbrabo-backend/src/pre-start/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  #  volumes:
+  #   - ./ticketbrabo-backend/src/pre-start/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
    ports:
     - 5432:5432
    environment:

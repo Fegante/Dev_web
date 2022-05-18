@@ -1,9 +1,9 @@
-import { AppDataSource } from "@configs/db";
+import { DatabaseSingleton } from "@configs/db";
 import { ItemFicha } from "@models/Item-ficha-model";
 
 
 async function getOne(id: number): Promise<ItemFicha | null>{
-    return await AppDataSource.getRepository(ItemFicha)
+    return await DatabaseSingleton.Instance.getRepository(ItemFicha)
     .findOne({
         where: {
             id: id,

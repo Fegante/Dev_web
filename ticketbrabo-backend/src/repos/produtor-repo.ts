@@ -1,13 +1,13 @@
-import { AppDataSource } from "@configs/db";
+import { DatabaseSingleton } from "@configs/db";
 import { Produtor } from "@models/produtor-model";
 
 
 async function save(produtor: Produtor): Promise<Produtor>{
-    return await AppDataSource.getRepository(Produtor).save(produtor);
+    return await DatabaseSingleton.Instance.getRepository(Produtor).save(produtor);
 }
 
 async function getAll(){
-    return await AppDataSource.getRepository(Produtor).find();
+    return await DatabaseSingleton.Instance.getRepository(Produtor).find();
 }
 
 

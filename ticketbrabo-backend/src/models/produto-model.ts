@@ -5,7 +5,7 @@ import { BaseEntity_ } from "./commons/baseEntity-model";
 @Entity()
 export class Produto extends BaseEntity_{
 
-    @Column()
+    @Column({type: "decimal", })
     preco: number;
 
     @Column()

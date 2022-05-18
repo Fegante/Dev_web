@@ -1,10 +1,22 @@
-import { AppDataSource } from "@configs/db";
+import { DatabaseSingleton } from "@configs/db";
 import { Produto } from "@models/produto-model";
 
 async function update(produto: Produto): Promise<void>{
-    AppDataSource.getRepository(Produto).save(produto);
+    await DatabaseSingleton.Instance.getRepository(Produto).save(produto);
+}
+
+async function getOne(id: number): Promise<Produto | null>{
+    return await DatabaseSingleton.Instance.getRepository(Produto).findOneBy({id: id});
+}
+
+async function save(produto: Produto): Promise<Produto>{
+    return await  DatabaseSingleton.Instance
+    .getRepository(Produto)
+    .save(produto);
 }
 
 export default {
-    update
+    update,
+    getOne,
+    save
 } as const;

@@ -10,6 +10,7 @@ import 'express-async-errors';
 import apiRouter from './routes/api';
 import logger from 'jet-logger';
 import { CustomError } from '@shared/errors';
+import { DatabaseSingleton } from '@configs/db';
 
 
 // Constants
@@ -39,6 +40,9 @@ if (process.env.NODE_ENV === 'production') {
 /***********************************************************************************
  *                         API routes and error handling
  **********************************************************************************/
+
+// Start DB
+DatabaseSingleton.start();
 
 // Add api router
 app.use('/api', apiRouter);

@@ -1,52 +1,38 @@
-import { Pessoa } from "@models/commons/pessoa-model";
-import { Produtor } from "@models/produtor-model";
-import { Pool } from "pg";
-import { createConnection, DataSource } from "typeorm";
+import { DataSource } from "typeorm";
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+export class DatabaseSingleton {
+  private static _instace: DataSource;
 
-export class Db {
-  public async connect() {
-    try {
+  private constructor() { }
 
-      const client = await pool.connect();
-
-      const sql = "SELECT * FROM PESSOA";
-      const { rows } = await client.query(sql);
-      const todos = rows;
-
-      console.log(rows);
-
-      client.release();
-
-    } catch (error) {
-      console.error(error);
+  public static get Instance() {
+    if (this._instace != null) {
+      return this._instace;
     }
+
+    this._instace = new DataSource({
+      type: "postgres",
+      host: process.env.DATABASE_HOST,
+      port: 5432,
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      synchronize: true,
+      logging: false,
+      entities: ["src/models/**/*.ts"],
+      subscribers: [],
+      migrations: []
+    });
+
+    return this._instace;
+  }
+
+   static start() {
+    DatabaseSingleton.Instance.initialize()
+      .then(() => {
+        console.log("Start")
+      })
+      .catch((error) => console.log(error));
   }
 }
 
-
-export const AppDataSource = new DataSource({
-    type: "postgres",
-    host: process.env.DATABASE_HOST,
-    port: 5432,
-    username: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
-    synchronize: true,
-    logging: false,
-    entities: ["src/models/**/*.ts"],
-    subscribers: [],
-    migrations: []
-  });
-  
-  
-  AppDataSource.initialize()
-      .then(() => {
-          console.log("Start")
-      })
-      .catch((error) => console.log(error));
-  
-  

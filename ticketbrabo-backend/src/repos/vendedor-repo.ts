@@ -1,4 +1,4 @@
-import { AppDataSource } from '@configs/db';
+import { DatabaseSingleton } from '@configs/db';
 import { Vendedor } from '@models/vendedor-model';
 import { getRandomInt } from '@shared/functions';
 import orm from './mock-orm';
@@ -29,7 +29,7 @@ async function persists(id: number): Promise<boolean> {
 async function getAll(): Promise<Vendedor[]> {
     const db = await orm.openDb();
    
-    const users = await AppDataSource.getRepository(Vendedor);
+    const users = await DatabaseSingleton.Instance.getRepository(Vendedor);
 
 
     console.log(await users.find());

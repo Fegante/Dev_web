@@ -1,9 +1,12 @@
 import { Ficha } from "@models/ficha-model";
 import { ItemFicha } from "@models/Item-ficha-model";
+import { Produto } from "@models/produto-model";
+import produtoRepo from "@repos/produto-repo";
 import itemfichaService from "@services/itemficha-service";
 import produtoService from "@services/produto-service";
 
 export class FichaBuilder {
+    
 
     constructor(private ficha: Ficha, private itemsFicha: ItemFicha[]) { }
 
@@ -18,7 +21,7 @@ export class FichaBuilder {
 
         this.itemsFicha.forEach( async (itemFicha) => {
             const itemValido = await this.adicionarItemsFicha(itemFicha);
-            //TODO diminuir quantidade estoque
+            //TODO: diminuir quantidade estoque
             this.diminuirQuantidadeProduto(itemValido);
 
             itemsFichaValidos.push(itemValido);
@@ -33,10 +36,14 @@ export class FichaBuilder {
         return itemResult as Promise<ItemFicha>;
     }
 
-    diminuirQuantidadeProduto(itemFicha: ItemFicha) {
-            const produto = itemFicha.produto;
-            produto.quantidadeTotal = produto.quantidadeTotal - itemFicha.quantidade;
-            this.validarQuantidadeProduto(produto.quantidadeTotal);
+    async diminuirQuantidadeProduto(itemFicha: ItemFicha) {
+            const produtoId = itemFicha.produto.id;
+            const produto = await produtoRepo.getOne(produtoId);
+
+            if(produto != null){
+                produto.quantidadeTotal = produto.quantidadeTotal - itemFicha.quantidade;
+                this.validarQuantidadeProduto(produto.quantidadeTotal);
+            }
     }
 
     validarQuantidadeProduto(quantidadeTotal: number){
