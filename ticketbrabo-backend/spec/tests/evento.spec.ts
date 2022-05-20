@@ -5,6 +5,7 @@ import app from '@server';
 import { Evento } from '@models/evento-model';
 import eventoRepo from '@repos/evento-repo';
 import { pErr } from '@shared/functions';
+import { Localidade } from '@models/commons/localidade-model';
 
 type TReqBody = string | object | undefined;
 
@@ -29,7 +30,7 @@ describe('evento-router', () => {
         };
         const evento = new Evento();
         evento.nome = '2022 - DOO';
-        evento.local = "Rua: Tal"
+        evento.localidade = new Localidade();
         evento.totalInvestido = 100;
         evento.totalReceita = 0;
         evento.dataHoraInicio = new Date();
