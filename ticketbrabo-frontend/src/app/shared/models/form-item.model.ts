@@ -4,6 +4,7 @@ export interface IFormItem {
     name: string;
     id: string;
     type: FormItemTypeEnum;
+    group?: string;
 }
 
 export interface IFormSchema {

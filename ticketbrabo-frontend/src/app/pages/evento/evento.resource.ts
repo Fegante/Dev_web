@@ -3,7 +3,7 @@ import { FormItemTypeEnum, IFormItem, IFormSchema } from "src/app/shared/models/
 
 export const formItem: IFormSchema =
 {
-    resourceName: 'Evento',
+    resourceName: 'evento',
     fields: [
         {
             label: 'Nome',
@@ -38,6 +38,7 @@ export const formItem: IFormSchema =
             placeholder: 'Rua...',
             name: 'eventStreet',
             id: 'eventStreet',
+            group: 'address',
             type: FormItemTypeEnum.TEXT
         },
         {
@@ -45,6 +46,7 @@ export const formItem: IFormSchema =
             placeholder: 'Bairro...',
             name: 'eventDistrict',
             id: 'eventDistrict',
+            group: 'address',
             type: FormItemTypeEnum.TEXT
         },
         {
@@ -52,6 +54,7 @@ export const formItem: IFormSchema =
             placeholder: 'Cidade...',
             name: 'eventCity',
             id: 'eventCity',
+            group: 'address',
             type: FormItemTypeEnum.TEXT
         },
         {
@@ -59,8 +62,8 @@ export const formItem: IFormSchema =
             placeholder: '29000',
             name: 'eventCEP',
             id: 'eventCEP',
+            group: 'address',
             type: FormItemTypeEnum.NUMBER
         }
     ]
-}
-    ;
+};
