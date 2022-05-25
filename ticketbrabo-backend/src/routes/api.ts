@@ -7,9 +7,9 @@ import produtoRouter from './produto-router';
 const baseRouter = Router();
 
 // Setup routers
-baseRouter.use('/vendedores', vendedorRouter);
-baseRouter.use('/eventos', eventoRouter);
-baseRouter.use('/produtos', produtoRouter);
+baseRouter.use('/vendedor', vendedorRouter);
+baseRouter.use('/evento', eventoRouter);
+baseRouter.use('/produto', produtoRouter);
 
 // Export default.
 export default baseRouter;

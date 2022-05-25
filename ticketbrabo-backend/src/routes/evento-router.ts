@@ -15,7 +15,7 @@ export const paths = {
 
 router.post(paths.add, async (req: Request, res: Response) => {
     const {evento} = req.body;
-    
+    console.log(evento);
     await eventoService.addOne(evento);
 
     return res.status(CREATED).end();

@@ -40,7 +40,8 @@ export class CadastroComponent implements OnInit{
 
     onSubmit(){
         if(this.form.valid){
-            this.http.post(`${this.schema.resourceName}/add`, this.form.value).subscribe(result => {
+            
+            this.http.post(`http://localhost:3000/api/${this.schema.resourceName}/add`, this.form.value).subscribe(result => {
                 console.log(result);
             });
         }
