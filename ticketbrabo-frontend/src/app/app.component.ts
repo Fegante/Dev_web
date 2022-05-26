@@ -7,22 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ticketbrabo-frontend';
-
-  menuItems!: any[];
-
+  visible = true;
   constructor() { }
 
   ngOnInit(): void {
-    this.menuItems = [{
-      class: "iconEvento",
-      text: "Eventos",
-      iconActive: 'iconEventoActiveIcon',
-      textActive: 'iconActive',
-      routerLink: '/evento'
-    },
-    {
-      class: "iconProduto",
-      text: "Produtos",
-    }];
+    setInterval(() => this.visible = false, 2000);
   }
 }

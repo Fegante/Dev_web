@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
 
 @Component({
   selector: 'app-evento',
@@ -7,22 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventoComponent implements OnInit {
 
-  menuItems!: any[];
 
-  constructor() { }
+  constructor(private loggedService: LoggedUserService) { }
 
   ngOnInit(): void {
-    this.menuItems = [{
-      class: "iconEvento",
-      text: "Eventos",
-      iconActive: 'iconEventoActiveIcon',
-      textActive: 'iconActive',
-      routerLink: '/evento'
-    },
-    {
-      class: "iconProduto",
-      text: "Produtos",
-    }];
+    console.log("2");
+    this.loggedService.isUserAuth = true;
   }
-
 }
