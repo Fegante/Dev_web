@@ -16,7 +16,7 @@ import { GraphBarComponenet } from "./components/graph-bar/graph-bar.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { FormResourceService } from "./services/form-resource.service";
-import { LogedUserService } from "./services/logged-user.service";
+import { LoggedUserService } from "./services/logged-user.service";
 
 
 @NgModule({

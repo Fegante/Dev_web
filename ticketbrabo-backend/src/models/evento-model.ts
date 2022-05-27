@@ -19,10 +19,10 @@ export class Evento extends BaseEntity_{
     @Column()
     totalInvestido: number;
 
-    @Column()
+    @Column({nullable: true})
     totalReceita: number;
     
-    @OneToOne(() => Localidade)
+    @OneToOne(() => Localidade, {cascade: true})
     @JoinColumn()
     localidade: Localidade;
 

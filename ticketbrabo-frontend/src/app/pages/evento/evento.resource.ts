@@ -8,61 +8,61 @@ export const formItem: IFormSchema =
         {
             label: 'Nome',
             placeholder: 'Nome do Evento',
-            name: 'eventName',
-            id: 'eventName',
+            name: 'nome',
+            id: 'nome',
             type: FormItemTypeEnum.TEXT
         },
         {
             label: 'Data/Hora Início',
             placeholder: 'Data/Hora',
-            name: 'eventDateStart',
-            id: 'eventDateStart',
+            name: 'dataHoraInicio',
+            id: 'dataHoraInicio',
             type: FormItemTypeEnum.DATE_TIME
         },
         {
             label: 'Data/Hora Fim',
             placeholder: 'Data/Hora',
-            name: 'eventDateEnd',
-            id: 'eventDateEnd',
+            name: 'dataHoraFim',
+            id: 'dataHoraFim',
             type: FormItemTypeEnum.DATE_TIME
         },
         {
             label: 'Investimento',
             placeholder: 'R$ 00,00',
-            name: 'eventInvestiment',
-            id: 'eventInvestiment',
+            name: 'totalInvestido',
+            id: 'totalInvestido',
             type: FormItemTypeEnum.NUMBER
         },
         {
             label: 'Rua',
             placeholder: 'Rua...',
-            name: 'eventStreet',
-            id: 'eventStreet',
-            group: 'address',
+            name: 'logradouro',
+            id: 'logradouro',
+            group: 'localidade',
             type: FormItemTypeEnum.TEXT
         },
         {
             label: 'Bairro',
             placeholder: 'Bairro...',
-            name: 'eventDistrict',
-            id: 'eventDistrict',
-            group: 'address',
+            name: 'bairro',
+            id: 'bairro',
+            group: 'localidade',
             type: FormItemTypeEnum.TEXT
         },
         {
-            label: 'Cidade',
-            placeholder: 'Cidade...',
-            name: 'eventCity',
-            id: 'eventCity',
-            group: 'address',
+            label: 'Município',
+            placeholder: 'Município...',
+            name: 'municipio',
+            id: 'municipio',
+            group: 'localidade',
             type: FormItemTypeEnum.TEXT
         },
         {
             label: 'CEP',
             placeholder: '29000',
-            name: 'eventCEP',
-            id: 'eventCEP',
-            group: 'address',
+            name: 'cep',
+            id: 'cep',
+            group: 'localidade',
             type: FormItemTypeEnum.NUMBER
         }
     ]
