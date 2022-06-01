@@ -9,7 +9,8 @@ const router = Router();
 const {CREATED, OK} = StatusCodes;
 
 export const paths = {
-    add: '/add'
+    add: '/add',
+    get: '/query'
 };
 
 
@@ -18,4 +19,8 @@ router.post(paths.add, async (req: Request, res: Response) => {
     return res.status(CREATED).end();
 });
 
+router.get(paths.get, async (req: Request, res: Response) => {
+    
+    return res.status(CREATED).send(await eventoService.getAll());
+});
 export default router;

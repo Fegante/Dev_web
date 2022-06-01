@@ -11,6 +11,13 @@ async function add(evento: Evento): Promise<void>{
 }
 
 
+async function get(): Promise<Evento[]>{
+   return await DatabaseSingleton.Instance
+    .getRepository(Evento).find();
+}
+
+
 export default {
     add,
+    get
 } as const;
