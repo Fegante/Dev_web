@@ -13,6 +13,11 @@ export class EventoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("2");
-    this.loggedService.isUserAuth = true;
+    this.loggedService.user = {
+      nome: 'Ezequiel',
+      role: 'Produtor',
+      isAuth: true,
+      token: "###DDD"
+    };
   }
 }

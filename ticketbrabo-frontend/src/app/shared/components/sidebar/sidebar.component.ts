@@ -1,6 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ObservableModel } from '../../models/observable.model';
-import { ObserverModel } from '../../models/observer.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoggedUserService } from '../../services/logged-user.service';
 
 @Component({
@@ -11,7 +9,7 @@ import { LoggedUserService } from '../../services/logged-user.service';
 export class SidebarComponent implements OnInit, OnDestroy {
   
   public menuItems!: any[];
-  private subscribe !: any;
+  private subscription: any;
 
   notAuth = [
     {
@@ -31,9 +29,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscribe = this.loggedService.addObserver((valor: any) => {
-      console.log("notificado");
-      if (valor.isUserAuth) {
+    this.subscription = this.loggedService.addObserver(({user}: any) => {
+      if (user.isAuth) {
         this.menuItems = [{
           class: "iconEvento",
           text: "Eventos",
@@ -57,6 +54,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   
   ngOnDestroy(): void {
     console.log("destruido");
-    this.loggedService.removeObserver(this.subscribe);
+    this.loggedService.removeObserver(this.subscription);
   }
 }
