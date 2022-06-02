@@ -11,6 +11,5 @@ export class AppComponent {
   constructor() { }
 
   ngOnInit(): void {
-    //setInterval(() => this.visible = false, 2000);
   }
 }

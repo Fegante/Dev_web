@@ -1,4 +1,4 @@
-export class ObservableModel {
+export abstract class ObservableModel {
     
     private observers: any[] = [];
 

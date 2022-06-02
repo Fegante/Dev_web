@@ -13,10 +13,9 @@ import { MenuLoggedComponent } from "./components/menu-logged/menu-logged.compon
 import { CadastroComponent } from "./pages/cadastro/cadastro.component";
 import { CardSimpleComponent } from "./components/card-simple/card-simple.component";
 import { GraphBarComponenet } from "./components/graph-bar/graph-bar.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { FormResourceService } from "./services/form-resource.service";
-import { LoggedUserService } from "./services/logged-user.service";
 
 
 @NgModule({

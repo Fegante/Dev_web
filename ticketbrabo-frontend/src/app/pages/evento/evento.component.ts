@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
+import { AuthNotificationService } from 'src/app/shared/services/auth-notification.service';
 
 @Component({
   selector: 'app-evento',
@@ -7,13 +7,10 @@ import { LoggedUserService } from 'src/app/shared/services/logged-user.service';
   styleUrls: ['./evento.component.css']
 })
 export class EventoComponent implements OnInit {
-
-
-  constructor(private loggedService: LoggedUserService) { }
+  constructor(private authNotificationService: AuthNotificationService) { }
 
   ngOnInit(): void {
-    console.log("2");
-    this.loggedService.user = {
+    this.authNotificationService.user = {
       nome: 'Ezequiel',
       role: 'Produtor',
       isAuth: true,

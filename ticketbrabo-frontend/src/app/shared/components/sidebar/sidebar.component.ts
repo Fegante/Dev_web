@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LoggedUserService } from '../../services/logged-user.service';
+import { AuthNotificationService } from '../../services/auth-notification.service';
+import { menuNotAtuhResource } from './not-auth-menu.resource';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,25 +12,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
   public menuItems!: any[];
   private subscription: any;
 
-  notAuth = [
-    {
-      class: "iconEvento",
-      text: "Novidades",
-      iconActive: 'iconEventoActiveIcon',
-      textActive: 'iconActive',
-      routerLink: '/evento'
-    },
-    {
-      class: "iconProduto",
-      text: "Produtos",
-    }
-  ];
-
-  constructor(private loggedService: LoggedUserService) {
+  constructor(private authNotificationService: AuthNotificationService) {
   }
 
   ngOnInit(): void {
-    this.subscription = this.loggedService.addObserver(({user}: any) => {
+    this.subscription = this.authNotificationService.addObserver(({user}: any) => {
       if (user.isAuth) {
         this.menuItems = [{
           class: "iconEvento",
@@ -43,17 +30,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
           text: "Produtos",
         }];
       } else {
-        this.menuItems = this.notAuth;
+        this.menuItems = menuNotAtuhResource;
       }
     });
     
-    this.menuItems = this.notAuth;
+    this.menuItems = menuNotAtuhResource;
   }
-
-
   
   ngOnDestroy(): void {
-    console.log("destruido");
-    this.loggedService.removeObserver(this.subscription);
+    this.authNotificationService.removeObserver(this.subscription);
   }
 }
