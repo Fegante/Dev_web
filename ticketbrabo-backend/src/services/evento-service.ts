@@ -5,6 +5,11 @@ function addOne(evento: Evento): Promise<void>{
     return eventoRepo.add(evento);
 }
 
+function getAll(): Promise<Evento[]>{
+    return eventoRepo.get();
+}
+
 export default {
-    addOne
+    addOne,
+    getAll
 } as const;
