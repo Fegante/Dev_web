@@ -50,7 +50,7 @@ mat-icon.notification{
     color: rgb(104, 104, 104);
 }
 
-.notification:hover, .cardLogin:hover{
-    cursor: pointer;
+.name:hover, .role:hover, .more:hover {
     opacity: .7;
+    cursor: pointer;
 }

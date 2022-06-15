@@ -1,0 +1,22 @@
+.carrosel {
+    width: 80%;
+    height: 300px;
+    background-color: black;
+}
+
+.homepage {
+    display: grid;
+    width: 80%;
+    grid-template-columns: 100%;
+    grid-template-rows: 3;
+    margin: 0 auto;
+}
+
+.carrousel{
+    width: 80%;
+    height: 30vh;
+    background-color: red;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
