@@ -1,0 +1,41 @@
+<section class="homepage">
+    <header 
+    class="carrousel"
+    [style.backgroundImage]="'url(https://www.ilhabela.com.br/wp-content/uploads/2016/01/eventos-em-ilhabela.jpg)'">
+    </header>
+
+    <main>
+        <h1>Eventos</h1>
+        <div class="cards">
+            <mat-card class="card" *ngFor="let i of [].constructor(4)">
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+                <mat-card-header>
+                  <mat-card-title>Shiba Inu</mat-card-title>
+                  <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                </mat-card-header>
+                
+              </mat-card>
+
+        </div>
+    </main>
+
+    <aside>
+        <h1>Comentários</h1>
+        <div class="comment-cards">
+            <mat-card *ngFor="let i of [].constructor(3)">
+               <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--hoverColor)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+               </span>
+                <mat-card-header>
+                  <mat-card-title>Shiba Inu</mat-card-title>
+                  <mat-card-subtitle>Algum comentário sobre tal evento. Algum comentário sobre tal evento.</mat-card-subtitle>
+                </mat-card-header>
+              </mat-card>
+
+        </div>
+       
+    </aside>
+
+    <footer></footer>
+</section>

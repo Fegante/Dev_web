@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
- 
   { path: 'evento', loadChildren: () => import('./pages/evento/evento.module').then(m => m.EventoModule) },
+  { path: '', loadChildren: () => import('./pages/home-page/home-page.module').then(m => m.HomePageModule) },
 ];
 
 @NgModule({

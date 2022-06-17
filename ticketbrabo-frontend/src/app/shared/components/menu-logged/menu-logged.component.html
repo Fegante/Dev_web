@@ -1,6 +1,6 @@
 <div class="menuLogged">
     <div class="notification">
-        <mat-icon  matBadge="23" class="notification" matBadgeColor="warn" aria-label="notification">
+        <mat-icon *ngIf="this.user != null"  matBadge="23" class="notification" matBadgeColor="warn" aria-label="notification">
             notifications
         </mat-icon>
     </div>
