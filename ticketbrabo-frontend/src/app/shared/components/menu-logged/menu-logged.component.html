@@ -13,7 +13,7 @@
             <div class="role">{{ this.user.role }}</div>
         </div>
         <div class="info" *ngIf="this.user == null">
-            <div class="name">{{ 'Entrar' }}</div>
+            <div class="name" (click)="onClickToSignIn()">{{ 'Entrar' }}</div>
             <div class="role">{{ 'Cadastrar' }}</div>
         </div>
         <div class="more">

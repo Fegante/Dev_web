@@ -39,3 +39,5 @@
 
     <footer></footer>
 </section>
+
+<homepage-login-modal *ngIf="this.showLoginComponent" (emitCloseLoginModal)="this.emitCloseLoginModal($event)"></homepage-login-modal>

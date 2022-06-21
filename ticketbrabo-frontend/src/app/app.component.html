@@ -1,8 +1,5 @@
 <app-sidebar *ngIf="this.visible"></app-sidebar>
 <app-menulogged></app-menulogged>
-<div style="margin-left: 400px" *ngFor="let evento of eventos">{{evento.nome}}</div>
-
-<a [routerLink]="'/evento'">teste</a>
 <div class="conteiner">
     <router-outlet></router-outlet>
 </div>

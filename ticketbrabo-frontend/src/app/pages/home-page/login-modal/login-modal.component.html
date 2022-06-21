@@ -1,0 +1,28 @@
+<div class="backgroundBlack">
+    <form>
+        <div class="first-column">
+            <div class="logo"></div>
+            <mat-form-field appearance="fill">
+                <mat-label>Usuário</mat-label>
+                <input matInput placeholder="Ex. email@email.com">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Senha</mat-label>
+                <input matInput placeholder="*****">
+            </mat-form-field>
+
+            <div class="buttons">
+                <button class="default">
+                    <span>ENTRAR</span>
+                </button>
+                <button class="google">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
+                    <span>Entrar com Google</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="close" (click)="clickToCloseLoginModal()">x</div>
+    </form>
+</div>

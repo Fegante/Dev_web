@@ -5,6 +5,7 @@ export class AuthenticationService {
     factoryStrategyAuth: FactoryStrategyAuthModel = new FactoryStrategyAuthModel();
 
     authentication(strategyTypeEnum: StrategyTypeEnum){
-        this.factoryStrategyAuth.fabricateStrategy(strategyTypeEnum);
+        const authentication = this.factoryStrategyAuth.fabricateStrategy(strategyTypeEnum);
+        authentication.authentication();
     }
 }
