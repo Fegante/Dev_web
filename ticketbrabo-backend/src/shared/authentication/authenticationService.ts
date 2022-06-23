@@ -4,8 +4,8 @@ import { StrategyTypeEnum } from "./strategy-type.enum";
 export class AuthenticationService {
     factoryStrategyAuth: FactoryStrategyAuthModel = new FactoryStrategyAuthModel();
 
-    authentication(strategyTypeEnum: StrategyTypeEnum){
+    authentication(strategyTypeEnum: StrategyTypeEnum, options?: any){
         const authentication = this.factoryStrategyAuth.fabricateStrategy(strategyTypeEnum);
-        authentication.authentication();
+        authentication.authentication(options);
     }
 }

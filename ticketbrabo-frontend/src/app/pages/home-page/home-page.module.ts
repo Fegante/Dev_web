@@ -6,6 +6,7 @@ import { HomePageComponent } from "./home-page.component";
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { LoginModalComponent } from "./login-modal/login-modal.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { LoginModalComponent } from "./login-modal/login-modal.component";
         CommonModule, 
         RouterModule,
         HomePageRoutingModule,
+        ReactiveFormsModule,
         MatCardModule,
         MatInputModule
     ],

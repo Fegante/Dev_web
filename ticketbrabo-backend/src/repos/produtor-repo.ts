@@ -10,8 +10,13 @@ async function getAll(){
     return await DatabaseSingleton.Instance.getRepository(Produtor).find();
 }
 
+async function findByEmail(email: string) {
+    return await DatabaseSingleton.Instance.getRepository(Produtor).findOneBy({email: email});
+}
+
 
 export default {
     save,
-    getAll
+    getAll,
+    findByEmail
 } as const;

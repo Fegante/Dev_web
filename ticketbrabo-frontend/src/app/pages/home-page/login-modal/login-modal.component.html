@@ -1,22 +1,22 @@
 <div class="backgroundBlack">
-    <form>
+    <form  [formGroup]="this.form" (submit)="onClickToSignIn()">
         <div class="first-column">
             <div class="logo"></div>
             <mat-form-field appearance="fill">
                 <mat-label>Usuário</mat-label>
-                <input matInput placeholder="Ex. email@email.com">
+                <input matInput name="email" formControlName="email" placeholder="Ex. email@email.com">
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Senha</mat-label>
-                <input matInput placeholder="*****">
+                <input matInput name="password" formControlName="password" placeholder="*****">
             </mat-form-field>
 
             <div class="buttons">
-                <button class="default">
+                <button class="default" [style.backgroundColor]="isFieldsWithValues() ? 'var(--hoverColor)' : '#ddd'">
                     <span>ENTRAR</span>
                 </button>
-                <button class="google">
+                <button class="google" type="button" (click)="clickGoogleLoginAuth()">
                     <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
                     <span>Entrar com Google</span>
                 </button>

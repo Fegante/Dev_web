@@ -12,7 +12,7 @@ async function add(evento: Evento): Promise<void>{
 
 
 async function get(): Promise<Evento[]>{
-   return await DatabaseSingleton.Instance
+   return DatabaseSingleton.Instance
     .getRepository(Evento).find();
 }
 
