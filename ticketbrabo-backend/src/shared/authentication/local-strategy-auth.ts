@@ -3,6 +3,7 @@ import { Authentication } from "./authentication";
 export class LocalStrategyAuth extends Authentication {
     
     getUserByAuthMethod(options?: any): any {
+        console.log(options);
         throw new Error("Get token para local auth - Não suportado")
     }
     generateJWTToken(user: any): Promise<string> {

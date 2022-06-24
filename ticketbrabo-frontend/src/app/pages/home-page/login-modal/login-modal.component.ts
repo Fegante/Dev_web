@@ -1,6 +1,8 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { MenuLoggedService } from "src/app/shared/components/menu-logged/menu-logged.service";
+import { FacebookInitializerService } from "src/app/shared/services/facebook-initializer.service";
 
 @Component({
     selector: "homepage-login-modal",
@@ -14,14 +16,14 @@ export class LoginModalComponent implements OnInit{
     @Output()
     emitCloseLoginModal = new EventEmitter<boolean>();
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(private httpClient: HttpClient, private facebookAuth:FacebookInitializerService) {
 
     }
 
     ngOnInit(): void {
         this.form = new FormGroup({
             email: new FormControl(null, { validators: [ Validators.email ] }),
-            password: new FormControl('', { validators: [ Validators.nullValidator , Validators.pattern("[A-Za-z0-9 ]")] })
+            password: new FormControl(null)
         });
     }
 
@@ -35,13 +37,19 @@ export class LoginModalComponent implements OnInit{
     }
 
     onClickToSignIn() {
-        console.log(this.form);
-        if(this.form.valid) {
-            console.log(this.form.value);
+        if(this.form.valid && this.isFieldsWithValues()) {
+            this.httpClient.post("http://localhost:3000/api/auth/local", this.form.value)
+            .subscribe(data => console.log(data));
         }
     }
 
     isFieldsWithValues():boolean {
-        return this.form.get("email")?.value != null && this.form.get("password")?.value != null
+        return this.form.get("email")?.value != null
+        && this.form.get("password")?.value != null
+        && this.form.valid
+    }
+
+    loginWithFacebook() {
+        this.facebookAuth.login();
     }
  }

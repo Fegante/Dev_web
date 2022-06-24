@@ -1,15 +1,15 @@
 <div class="backgroundBlack">
-    <form  [formGroup]="this.form" (submit)="onClickToSignIn()">
+    <form [formGroup]="this.form" (submit)="onClickToSignIn()">
         <div class="first-column">
             <div class="logo"></div>
             <mat-form-field appearance="fill">
                 <mat-label>Usuário</mat-label>
-                <input matInput name="email" formControlName="email" placeholder="Ex. email@email.com">
+                <input matInput name="email" formControlName="email" placeholder="Ex. email@email.com" type="email">
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Senha</mat-label>
-                <input matInput name="password" formControlName="password" placeholder="*****">
+                <input matInput name="password" formControlName="password" placeholder="*****" type="password">
             </mat-form-field>
 
             <div class="buttons">
@@ -20,6 +20,14 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
                     <span>Entrar com Google</span>
                 </button>
+
+                <button (click)="loginWithFacebook()">
+                    <span>Facebook</span>
+                </button>
+
+                <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with"
+                    data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
             </div>
         </div>
 

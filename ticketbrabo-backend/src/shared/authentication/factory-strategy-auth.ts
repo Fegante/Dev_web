@@ -8,9 +8,9 @@ export class FactoryStrategyAuthModel {
     private _authenticationStrategy!: Authentication;
 
     fabricateStrategy(strategyTypeEnum: StrategyTypeEnum): Authentication {
-        if(strategyTypeEnum = StrategyTypeEnum.GOOGLE) {
+        if(strategyTypeEnum == StrategyTypeEnum.GOOGLE) {
             this._authenticationStrategy = new GoogleStrategyAuth();
-        } else if(strategyTypeEnum = StrategyTypeEnum.LOCAL){
+        } else if(strategyTypeEnum == StrategyTypeEnum.LOCAL){
             this._authenticationStrategy = new LocalStrategyAuth();
         }
 
