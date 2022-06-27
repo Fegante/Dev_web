@@ -6,7 +6,6 @@ export class AuthenticationService {
 
     authentication(strategyTypeEnum: StrategyTypeEnum, options?: any){
         const authentication = this.factoryStrategyAuth.fabricateStrategy(strategyTypeEnum);
-        console.log(typeof authentication)
-        authentication.authentication(options);
+        return authentication.authentication(options);
     }
 }

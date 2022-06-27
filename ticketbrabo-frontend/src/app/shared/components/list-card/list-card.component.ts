@@ -7,87 +7,14 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 })
 export class ListCardComponent implements OnInit {
 
+  @Input()
   public listCard!: any[];
   private activeCardItem: any;
 
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.listCard = [];
-    this.listCard.push(
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-
-    );
-
+   
 
   }
 

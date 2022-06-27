@@ -9,7 +9,12 @@ function findByEmail(email: string) {
     return produtorRepo.findByEmail(email);
 }
 
+function findByEmailOrId(email: string, id: string) {
+    return produtorRepo.findByEmailOrId(email, id);
+}
+
 export default {
     addOne,
-    findByEmail
+    findByEmail,
+    findByEmailOrId,
 } as const;

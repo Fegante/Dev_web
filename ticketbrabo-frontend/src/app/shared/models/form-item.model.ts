@@ -15,5 +15,6 @@ export interface IFormSchema {
 export enum FormItemTypeEnum{
     TEXT = 'text',
     DATE_TIME = 'datetime-local',
-    NUMBER = 'number'
+    NUMBER = 'number',
+    EMAIL = 'email'
 }

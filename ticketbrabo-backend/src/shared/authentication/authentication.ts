@@ -7,21 +7,20 @@ export abstract class Authentication {
     protected JWT_EXPIRES = process.env.JWT_EXPIRES;
 
     async authentication(options?: any) {
-        const user = this.getUserByAuthMethod(options);
+        const user = await this.getUserByAuthMethod(options);
         await this.isAlreadySignUp(user);
-        return this.generateJWTToken(user);
+        return this.generateJWTToken(user);;
     }
 
     async isAlreadySignUp(user: any) {
-        console.log("Already signup ?");
-        const produtor = await produtorService.findByEmail(user.email);
-        if(produtor == null){
-            throw new Error("Usuário ainda não cadastrado.");
+        const produtor = await produtorService.findByEmail(user?.email);
+        if(produtor == null) {
+            throw new Error("Usuario ainda não cadastrado;")
         }
+        return;
     }
 
 
-    // abstract isAlreadySignUp(user?: any): Promise<boolean>;
     abstract getUserByAuthMethod(options?: any): any;
     abstract generateJWTToken(user: any): Promise<string>;
 }

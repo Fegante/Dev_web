@@ -94,7 +94,7 @@
   "include": [
     "src/**/*.ts",
     "spec/**/*.ts"
-  ],
+, "../ticketbrabo-frontend/src/app/app-settings.ts"  ],
   "exclude": [
     "src/public/"
   ]

@@ -1,7 +1,8 @@
 
 export enum StrategyTypeEnum {
     GOOGLE = 'google',
-    LOCAL = 'local'
+    LOCAL = 'local',
+    FACEBOOK = 'facebook'
 }
 
 export abstract class StrategyTypeConverter {

@@ -20,7 +20,6 @@ router.post(paths.add, async (req: Request, res: Response) => {
 });
 
 router.get(paths.get, async (req: Request, res: Response) => {
-    
-    return res.status(CREATED).send(await eventoService.getAll());
+    return res.status(CREATED).send({data: await eventoService.getAll()});
 });
 export default router;

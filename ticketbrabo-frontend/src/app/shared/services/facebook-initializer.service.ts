@@ -6,6 +6,8 @@ declare const FB: any;
 
 @Injectable({providedIn: 'root'})
 export class FacebookInitializerService {
+    static SERVER_APP:string = "https://localhost:443";
+
     constructor(private http: HttpClient) {
         FB.init({
             appId: '1430391037431832',
@@ -18,9 +20,13 @@ export class FacebookInitializerService {
 
     login() {
         return new Promise((resolve, reject) => {
+            const options = {
+                scope: "public_profile,email"
+            };
             return FB.login((result: any) => {
                 if (result.authResponse) {
-                    return this.http.post(`http://localhost:3000/api/auth/facebook`, { access_token: result.authResponse.accessToken })
+                    console.log(result)
+                    return this.http.post(`${FacebookInitializerService.SERVER_APP}/api/auth/facebook`, { accessToken: result.authResponse.accessToken })
                         .toPromise()
                         .then(response => {
                             const token = response;
@@ -34,7 +40,7 @@ export class FacebookInitializerService {
                     reject();
                     return;
                 }
-            }, { scope: 'public_profile,email' });
+            }, options);
         });
     }
 }

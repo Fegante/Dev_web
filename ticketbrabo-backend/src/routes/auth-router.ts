@@ -1,3 +1,4 @@
+import { COOKIE_NAME } from "@configs/settings";
 import { AuthenticationService } from "@shared/authentication/authenticationService";
 import { StrategyTypeConverter, StrategyTypeEnum } from "@shared/authentication/strategy-type.enum";
 import { Router } from "express";
@@ -11,16 +12,40 @@ const {CREATED, OK} = StatusCodes;
 export const paths = {
     type: '/:type',
 };
-router.post(paths.type, async(req, res) => {
+
+router.post(paths.type, async (req, res) => {
     const enumType: StrategyTypeEnum = StrategyTypeConverter.getStrategyTypeByString(req.params.type);
-    authService.authentication(enumType, req.body);
-    res.send();
+    let token;
+    try {
+        token = await authService.authentication(enumType, req.body);
+    } catch(err) {
+        const urlRedirect = `${String(process.env.GOOGLE_REDIRECT_TO_UI)}/`;
+        return res.redirect(urlRedirect);
+    }
+    return res.send({type: "success", data: token});
 });
+
 router.get(paths.type, async (req, res) => {
     const enumType: StrategyTypeEnum = StrategyTypeConverter.getStrategyTypeByString(req.params.type);
-    authService.authentication(enumType, req.query);
-    //https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&response_type=code&client_id=743607987428-ao886h6i5o2aufju7a56u6huvcce9bm2.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fgoogle
-    res.send();
+
+    try {
+        const token = await authService.authentication(enumType, req.query);
+        console.log(token);
+        res.cookie(COOKIE_NAME, token, {
+            maxAge: 90000,
+            secure: false,
+            httpOnly: false,
+        });
+
+        const urlRedirect = `${String(process.env.REDIRECT_TO_UI)}/evento`;
+        return res.redirect(urlRedirect);
+
+    } catch(err) {
+        const urlRedirect = `${String(process.env.REDIRECT_TO_UI)}/produtor/new`;
+        return res.redirect(urlRedirect);
+    }
+    
+   
 });
 
 export default router;

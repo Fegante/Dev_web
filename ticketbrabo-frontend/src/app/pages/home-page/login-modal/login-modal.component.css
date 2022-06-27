@@ -43,6 +43,7 @@ form button {
     height: 40px;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 form button:hover {
@@ -53,9 +54,7 @@ form button:hover {
     background-color: var(--hoverColor);
     color: #fff;
 }
-form button:nth-child(2) {
-    margin-top: 10px;
-}
+
 button img {
     width: 25px;
     margin-left: 60px;
@@ -84,5 +83,10 @@ button span {
     cursor: pointer;
     border-radius: 50%;
     font-weight: 700;
+    color: #fff;
+}
+
+.facebook {
+    background-color: #4267B2;
     color: #fff;
 }
