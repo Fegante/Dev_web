@@ -7,5 +7,19 @@ async function save(reservaEstoque: ReservaEstoque): Promise<ReservaEstoque>{
 }
 
 async function getAll(){
-    return await DatabaseSingleton.Instance.getRepository(ReservaEstoque).find();
+    return await DatabaseSingleton.Instance
+    .getRepository(ReservaEstoque)
+    .find({
+        relations: {
+            evento: true,
+            produto: {
+                categoriaProduto: true
+            }
+        }
+    });
 }
+
+export default {
+    save,
+    getAll
+} as const;

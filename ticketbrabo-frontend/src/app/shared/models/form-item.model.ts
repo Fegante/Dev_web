@@ -4,6 +4,7 @@ export interface IFormItem {
     name: string;
     id: string;
     type: FormItemTypeEnum;
+    group?: string;
 }
 
 export interface IFormSchema {
@@ -14,5 +15,6 @@ export interface IFormSchema {
 export enum FormItemTypeEnum{
     TEXT = 'text',
     DATE_TIME = 'datetime-local',
-    NUMBER = 'number'
+    NUMBER = 'number',
+    EMAIL = 'email'
 }

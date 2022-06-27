@@ -1,94 +1,28 @@
-import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-card',
   templateUrl: './list-card.component.html',
   styleUrls: ['./list-card.component.css']
 })
-export class ListCardComponent implements OnInit {
+export class ListCardComponent implements OnInit, OnDestroy {
 
+  @Input()
   public listCard!: any[];
   private activeCardItem: any;
+
+  private changeCard = new EventEmitter();
+  private subscription!: Subscription;
 
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.listCard = [];
-    this.listCard.push(
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
+   this.subscription = this.changeCard.subscribe((c) => this.onSelectedCard(c));
+  }
 
-    );
-
-
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   onClickCard(cardId: string, event: any): void {
@@ -115,4 +49,24 @@ export class ListCardComponent implements OnInit {
     return target.path.filter((p: any) => p.classList && p.classList.contains("cardItem"))[0];
   }
 
+  toggleClass(newSelectedCard: any) {
+    if (this.activeCardItem && this.activeCardItem != newSelectedCard) {
+      this.toggleClassAndActiveCard(this.activeCardItem, { key: "border", value: "2px solid transparent" });
+      this.toggleClassAndActiveCard(newSelectedCard, { key: "border", value: "2px solid var(--hoverColor)" });
+      return;
+    }
+
+    this.toggleClassAndActiveCard(newSelectedCard, { key: "border", value: "2px solid var(--hoverColor)" });
+  }
+
+  emitCardChange(event: any) {
+    const card = this.isClickOnCard(event);
+    if(card){
+      this.changeCard.emit(card);
+    }
+  }
+
+  onSelectedCard(card: any) {
+    this.toggleClass(card);
+  }
 }

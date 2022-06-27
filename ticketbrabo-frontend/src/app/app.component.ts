@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,22 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ticketbrabo-frontend';
-
-  menuItems!: any[];
-
-  constructor() { }
+  visible = true;
+  eventos!: any;
+  constructor(
+    private httpclient: HttpClient
+  ) { }
 
   ngOnInit(): void {
-    this.menuItems = [{
-      class: "iconEvento",
-      text: "Eventos",
-      iconActive: 'iconEventoActiveIcon',
-      textActive: 'iconActive',
-      routerLink: '/evento'
-    },
-    {
-      class: "iconProduto",
-      text: "Produtos",
-    }];
+    this.httpclient.get('http://localhost:3000/api/evento/query')
+    .subscribe((data) => {
+      this.eventos = data;
+      console.log(data)
+    })
   }
 }

@@ -1,6 +1,6 @@
 <div class="menuLogged">
     <div class="notification">
-        <mat-icon  matBadge="23" class="notification" matBadgeColor="warn" aria-label="notification">
+        <mat-icon *ngIf="this.user != null"  matBadge="23" class="notification" matBadgeColor="warn" aria-label="notification">
             notifications
         </mat-icon>
     </div>
@@ -8,9 +8,13 @@
         <div class="image">
             <img src="assets/images/default_user.png" width="40px">
         </div>
-        <div class="info">
-            <div class="name">Teste</div>
-            <div class="role">Produtor</div>
+        <div class="info" *ngIf="this.user != null">
+            <div class="name">{{ this.user.nome }}</div>
+            <div class="role">{{ this.user.role }}</div>
+        </div>
+        <div class="info" *ngIf="this.user == null">
+            <div class="name" (click)="onClickToSignIn()">{{ 'Entrar' }}</div>
+            <div class="role">{{ 'Cadastrar' }}</div>
         </div>
         <div class="more">
             <mat-icon aria-hidden="false" aria-label="Expandir para mais">expand_more</mat-icon>

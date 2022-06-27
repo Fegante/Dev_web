@@ -11,7 +11,7 @@ import apiRouter from './routes/api';
 import logger from 'jet-logger';
 import { CustomError } from '@shared/errors';
 import { DatabaseSingleton } from '@configs/db';
-
+import cors from "cors";
 
 // Constants
 const app = express();
@@ -25,6 +25,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(cors(
+    {
+        credentials: true
+    }
+));
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {

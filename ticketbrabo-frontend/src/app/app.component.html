@@ -1,4 +1,5 @@
-<app-sidebar [menuItems]="this.menuItems"></app-sidebar>
+<app-sidebar *ngIf="this.visible"></app-sidebar>
 <app-menulogged></app-menulogged>
-
-<router-outlet></router-outlet>
+<div class="conteiner">
+    <router-outlet></router-outlet>
+</div>

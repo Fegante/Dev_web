@@ -5,6 +5,16 @@ function addOne(produtor: Produtor){
     return produtorRepo.save(produtor);
 }
 
+function findByEmail(email: string) {
+    return produtorRepo.findByEmail(email);
+}
+
+function findByEmailOrId(email: string, id: string) {
+    return produtorRepo.findByEmailOrId(email, id);
+}
+
 export default {
-    addOne
+    addOne,
+    findByEmail,
+    findByEmailOrId,
 } as const;

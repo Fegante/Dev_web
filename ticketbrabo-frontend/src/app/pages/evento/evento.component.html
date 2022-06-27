@@ -6,7 +6,7 @@
             </header>
             
             <div class="listProductEvent">
-                <app-cardcolored></app-cardcolored>
+                <app-cardcolored [cards]="this.cards"></app-cardcolored>
             </div>
         </section>
 
@@ -22,7 +22,7 @@
         </section>
 
         <section class="list-eventos">
-            <app-list-card></app-list-card>
+            <app-list-card [listCard]="this.events"></app-list-card>
         </section>
 
     </section>

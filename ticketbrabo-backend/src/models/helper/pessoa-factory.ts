@@ -1,17 +1,18 @@
-import { Pessoa } from "@models/commons/pessoa-model";
+import { PessoaBase } from "@models/commons/pessoa-base";
 import { Produtor } from "@models/produtor-model";
 import { Vendedor } from "@models/vendedor-model";
+import { PessoaEnum } from "./pessoa-enum";
 
 
 export class PessoaFactory {
 
-    criarPessoa(typeClass: string): Pessoa | null{
-        if(typeClass == "vendedor"){
-            return new Vendedor();
-        }else if(typeClass == "produtor"){
+    static criarPessoa(pessoaEnum: PessoaEnum): PessoaBase{
+        if(pessoaEnum == PessoaEnum.VENDEDOR){
+           return new Vendedor();
+        }else if(pessoaEnum == PessoaEnum.PRODUTOR){
             return new Produtor();
         }
-
-        return null;
+    
+        throw new Error("Tipo de Pessoa não existente");
     }
 }

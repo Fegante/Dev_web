@@ -1,4 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { UserModel } from "../../models/user.model";
+import { AuthNotificationService } from "../../services/auth-notification.service";
+import { MenuLoggedService } from "./menu-logged.service";
 
 
 @Component({
@@ -7,6 +10,26 @@ import { Component } from "@angular/core";
     styleUrls: ["./menu-logged.component.css"]
 })
 
-export class MenuLoggedComponent {
+export class MenuLoggedComponent implements OnInit, OnDestroy{
     
+    public user!: UserModel;
+    private subscription: any;
+    constructor(
+        private authNotificationService: AuthNotificationService,
+        private menuLoggedService: MenuLoggedService){
+    }
+
+    onClickToSignIn() {
+        this.menuLoggedService.emitClickedToLogin();
+    }
+
+    ngOnInit(): void {
+        this.subscription = this.authNotificationService.addObserver(({user}: any) => {
+            this.user = user;
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.authNotificationService.removeObserver(this.subscription);
+    }
 }

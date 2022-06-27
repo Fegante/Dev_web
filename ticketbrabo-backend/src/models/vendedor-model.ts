@@ -1,8 +1,9 @@
-import { Column, Entity } from "typeorm";
-import { Pessoa } from "./commons/pessoa-model";
+import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+import { PessoaBase } from "./commons/pessoa-base";
+import { Pessoa } from "./pessoa-model";
 
 @Entity()
-export class Vendedor extends Pessoa{
+export class Vendedor extends PessoaBase{
     
     @Column({type: 'timestamptz'})
     dataInicioContrato: Date;
@@ -12,6 +13,9 @@ export class Vendedor extends Pessoa{
     
     @Column()
     cargo: string;
+
+    @JoinColumn()
+    pessoa: Pessoa;
     
 }
 
