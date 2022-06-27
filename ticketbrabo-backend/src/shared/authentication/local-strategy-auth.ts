@@ -10,9 +10,11 @@ export class LocalStrategyAuth extends Authentication {
     }
 
     async isAlreadySignUp(user: any) {
-        if(user == null) {
-            throw new Error("Usuário ainda não cadastrado.");
-        }
-        return;
+        return user != null;
     }
+
+    saveNewUser(user: any): Promise<any> {
+        throw new Error("Method not implemented.");
+    }
+    
 }

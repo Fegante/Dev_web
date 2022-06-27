@@ -33,4 +33,8 @@ export class FacebookStrategyAuth extends Authentication {
 
         return token;
     }
+
+    async saveNewUser(user: any): Promise<any> {
+        
+    }
 }

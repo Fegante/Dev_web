@@ -3,6 +3,12 @@ import { google } from "googleapis";
 import { OAuth2Client } from "google-auth-library";
 import { sign } from "jsonwebtoken";
 import axios from "axios";
+import produtorService from "@services/produtor-service";
+import { PessoaFactory } from "@models/helper/pessoa-factory";
+import { PessoaEnum } from "@models/helper/pessoa-enum";
+import { Produtor } from "@models/produtor-model";
+import pessoaService from "@services/pessoa-service";
+import { Pessoa } from "@models/pessoa-model";
 
 export class GoogleStrategyAuth extends Authentication {
 
@@ -51,4 +57,17 @@ export class GoogleStrategyAuth extends Authentication {
        return jwtToken;
     }
 
+    async saveNewUser(user: any): Promise<any> {
+        const produtor = PessoaFactory.criarPessoa(PessoaEnum.PRODUTOR) as Produtor;
+        const pessoa = new Pessoa();
+
+        pessoa.email = user.email;
+        pessoa.nome = user.name;
+        pessoa.isRegistrationCompleted = false;
+        pessoa.oauthIdentification = user.id;
+        
+        produtor.pessoa = pessoa;
+    
+        return  produtorService.addOne(produtor);
+    }
 }

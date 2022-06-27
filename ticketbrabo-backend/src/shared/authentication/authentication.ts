@@ -8,19 +8,21 @@ export abstract class Authentication {
 
     async authentication(options?: any) {
         const user = await this.getUserByAuthMethod(options);
-        await this.isAlreadySignUp(user);
-        return this.generateJWTToken(user);;
+
+        if(await this.isAlreadySignUp(user)) {
+            return this.generateJWTToken(user);
+        }
+    
+        return this.saveNewUser(user);;
     }
 
-    async isAlreadySignUp(user: any) {
-        const produtor = await produtorService.findByEmail(user?.email);
-        if(produtor == null) {
-            throw new Error("Usuario ainda não cadastrado;")
-        }
-        return;
+    async isAlreadySignUp(user: any): Promise<boolean> {
+        const produtor = await produtorService.findByEmail(user.email);
+        return produtor != null;
     }
 
 
     abstract getUserByAuthMethod(options?: any): any;
     abstract generateJWTToken(user: any): Promise<string>;
+    abstract saveNewUser(user: any): Promise<any>;
 }

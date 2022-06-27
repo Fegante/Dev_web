@@ -41,6 +41,7 @@ router.get(paths.type, async (req, res) => {
         return res.redirect(urlRedirect);
 
     } catch(err) {
+        console.log(err)
         const urlRedirect = `${String(process.env.REDIRECT_TO_UI)}/produtor/new`;
         return res.redirect(urlRedirect);
     }
