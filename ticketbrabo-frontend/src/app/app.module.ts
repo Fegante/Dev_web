@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     SharedModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatBadgeModule 
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

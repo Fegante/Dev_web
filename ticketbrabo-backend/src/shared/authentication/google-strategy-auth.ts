@@ -53,7 +53,9 @@ export class GoogleStrategyAuth extends Authentication {
     }
     
     async generateJWTToken(user: any): Promise<string> {
-       const jwtToken =  await sign(user, this.JWT_SECRET, {expiresIn: this.JWT_EXPIRES});
+       const jwtToken =  await sign({id:user.id,email:user.email}, this.JWT_SECRET, {expiresIn: this.JWT_EXPIRES});
+       console.log(user)
+
        return jwtToken;
     }
 

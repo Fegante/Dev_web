@@ -7,18 +7,17 @@ export abstract class Authentication {
     protected JWT_EXPIRES = process.env.JWT_EXPIRES;
 
     async authentication(options?: any) {
-        const user = await this.getUserByAuthMethod(options);
-
-        if(await this.isAlreadySignUp(user)) {
+        let user = await this.getUserByAuthMethod(options);
+        user = await this.isAlreadySignUp(user)
+        if(user) {
             return this.generateJWTToken(user);
         }
     
         return this.saveNewUser(user);;
     }
 
-    async isAlreadySignUp(user: any): Promise<boolean> {
-        const produtor = await produtorService.findByEmail(user.email);
-        return produtor != null;
+    async isAlreadySignUp(user: any): Promise<any> {
+        return await produtorService.findByEmail(user.email);
     }
 
 

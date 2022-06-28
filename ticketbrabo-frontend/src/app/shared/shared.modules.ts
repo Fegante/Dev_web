@@ -14,8 +14,9 @@ import { CadastroComponent } from "./pages/cadastro/cadastro.component";
 import { CardSimpleComponent } from "./components/card-simple/card-simple.component";
 import { GraphBarComponenet } from "./components/graph-bar/graph-bar.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormResourceService } from "./services/form-resource.service";
+import { Interceptor } from "./services/interceptor";
 
 
 @NgModule({
@@ -40,7 +41,9 @@ import { FormResourceService } from "./services/form-resource.service";
         HttpClientModule
     ],
     providers: [
-        FormResourceService
+        FormResourceService,
+        Interceptor,
+        {useClass:Interceptor,provide:HTTP_INTERCEPTORS,multi:true}
     ],
     exports: [
         SidebarComponent,
