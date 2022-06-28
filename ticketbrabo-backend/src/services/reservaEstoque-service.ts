@@ -7,6 +7,11 @@ function getAll(): Promise<ReservaEstoque[]> {
     return reservaEstoqueRepo.getAll();
 }
 
+async function getByWhere(where: {}) {
+    return reservaEstoqueRepo.getByWhere(where);
+}
+
 export default {
     getAll,
+    getByWhere
 } as const;

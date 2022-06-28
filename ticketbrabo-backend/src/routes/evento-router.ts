@@ -3,6 +3,7 @@ import eventoService from "@services/evento-service";
 import produtorService from "@services/produtor-service";
 import { Router, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import {decode} from "jsonwebtoken";
 
 const router = Router();
 
@@ -10,12 +11,13 @@ const {CREATED, OK} = StatusCodes;
 
 export const paths = {
     add: '/add',
-    get: '/query'
+    get: '/query',
 };
 
 
 router.post(paths.add, async (req: Request, res: Response) => {
     await eventoService.addOne(req.body);
+    decode(req.headers.biscoito as string);
     return res.status(CREATED).end();
 });
 
