@@ -40,7 +40,7 @@ import { FormResourceService } from "./services/form-resource.service";
         HttpClientModule
     ],
     providers: [
-        FormResourceService
+        FormResourceService,
     ],
     exports: [
         SidebarComponent,
