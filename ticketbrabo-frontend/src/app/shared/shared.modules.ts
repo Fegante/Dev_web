@@ -17,6 +17,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormResourceService } from "./services/form-resource.service";
 import { Interceptor } from "./services/interceptor";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MessageSnackbarComponent } from "./components/message-snackbar/message-snackbar.component";
+import { MessageService } from "./services/message.service";
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { Interceptor } from "./services/interceptor";
         MenuLoggedComponent,
         CadastroComponent,
         CardSimpleComponent,
-        GraphBarComponenet
+        GraphBarComponenet,
+        MessageSnackbarComponent
     ],
     imports: [
         CommonModule,
@@ -38,12 +42,18 @@ import { Interceptor } from "./services/interceptor";
         MatButtonModule,
         MatProgressSpinnerModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSnackBarModule
     ],
     providers: [
         FormResourceService,
         Interceptor,
-        {useClass:Interceptor,provide:HTTP_INTERCEPTORS,multi:true}
+        {
+            useClass: Interceptor,
+            provide: HTTP_INTERCEPTORS,
+            multi: true
+        },
+        MessageService
     ],
     exports: [
         SidebarComponent,
@@ -53,7 +63,8 @@ import { Interceptor } from "./services/interceptor";
         MenuLoggedComponent,
         CadastroComponent,
         CardSimpleComponent,
-        GraphBarComponenet
+        GraphBarComponenet,
+        MessageSnackbarComponent
     ]
   
 })

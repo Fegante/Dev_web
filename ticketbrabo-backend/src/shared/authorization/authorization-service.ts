@@ -4,11 +4,16 @@ import { verify } from "jsonwebtoken";
 
 export class AuthorizationService {
 
+    static async decodeToken(req: Request) {
+        const token = verify(req.headers.token as string, process.env.JWT_SECRET as string) as any;
+        const user = await produtorService.findOneById(token.id);
+       
+        return user;
+    }
     static async isValidToken(req: Request, res: Response, next: any) {
-        
         try {
-            const biscoito = verify(req.headers.biscoito as string, process.env.JWT_SECRET as string) as any;
-            const user = await produtorService.findById(biscoito.id);
+           const user = AuthorizationService.decodeToken(req);
+            
             if(!user){
                 return res.send({type: 'error', message: 'Usuário inválido'});
             }

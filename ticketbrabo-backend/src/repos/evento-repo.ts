@@ -16,8 +16,17 @@ async function get(): Promise<Evento[]>{
     .getRepository(Evento).find();
 }
 
+async function getByProdutorId(id: number): Promise<Evento[]> {
+    return DatabaseSingleton.Instance
+        .getRepository(Evento).find({
+            where: {
+                produtor: { id: id }
+            }
+        });
+}
 
 export default {
     add,
-    get
+    get,
+    getByProdutorId
 } as const;

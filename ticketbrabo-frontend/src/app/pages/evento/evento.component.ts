@@ -22,7 +22,7 @@ export class EventoComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private authNotificationService: AuthNotificationService,
     private http: HttpClient) { 
-      console.log(this.activedRoute.snapshot)
+    
     }
 
   ngOnInit(): void {
@@ -67,7 +67,9 @@ export class EventoComponent implements OnInit {
   }
 
   private tranformEvents(events: []) {
-    this.events = events.map(this.tranformEventInListCardItem);
+    if(events) {
+      this.events = events.map(this.tranformEventInListCardItem);
+    }
   }
 
   private tranformEventInListCardItem(event: any): ListCardItemModel{
