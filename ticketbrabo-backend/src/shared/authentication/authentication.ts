@@ -20,10 +20,8 @@ export abstract class Authentication {
     }
 
     async generateJWTToken(): Promise<string> {
-        const jwtToken = await sign({ id: this.user.id, email: this.user.email },
+        return await sign({ id: this.user.id, email: this.user.email },
             this.JWT_SECRET, { expiresIn: this.JWT_EXPIRES });
-     
-        return jwtToken;
     }
 
 
