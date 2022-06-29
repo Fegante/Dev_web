@@ -1,13 +1,11 @@
 import { Authentication } from "./authentication";
 import { google } from "googleapis";
 import { OAuth2Client } from "google-auth-library";
-import { sign } from "jsonwebtoken";
 import axios from "axios";
 import produtorService from "@services/produtor-service";
 import { PessoaFactory } from "@models/helper/pessoa-factory";
 import { PessoaEnum } from "@models/helper/pessoa-enum";
 import { Produtor } from "@models/produtor-model";
-import pessoaService from "@services/pessoa-service";
 import { Pessoa } from "@models/pessoa-model";
 
 export class GoogleStrategyAuth extends Authentication {
@@ -51,25 +49,21 @@ export class GoogleStrategyAuth extends Authentication {
 
         return googleUser;
     }
-    
-    async generateJWTToken(user: any): Promise<string> {
-       const jwtToken =  await sign({id:user.id,email:user.email}, this.JWT_SECRET, {expiresIn: this.JWT_EXPIRES});
-       console.log(user)
-
-       return jwtToken;
-    }
 
     async saveNewUser(user: any): Promise<any> {
         const produtor = PessoaFactory.criarPessoa(PessoaEnum.PRODUTOR) as Produtor;
-        const pessoa = new Pessoa();
 
-        pessoa.email = user.email;
-        pessoa.nome = user.name;
-        pessoa.isRegistrationCompleted = false;
-        pessoa.oauthIdentification = user.id;
-        
-        produtor.pessoa = pessoa;
-    
-        return  produtorService.addOne(produtor);
+        produtor.pessoa = {
+            email: user.email,
+            nome : user.name,
+            isRegistrationCompleted : false,
+            oauthIdentification : user.id
+        } as Pessoa;
+
+        return produtorService.addOne(produtor);
+    }
+
+    async getUserIfAlreadySaved(user: any): Promise<any> {
+        return await produtorService.findByEmail(user.email);
     }
 }

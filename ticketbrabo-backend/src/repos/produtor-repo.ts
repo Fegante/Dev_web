@@ -16,7 +16,16 @@ async function findByEmail(email: string) {
 
 async function findByEmailOrId(email: string, id: string) {
     return await DatabaseSingleton.Instance.getRepository(Produtor)
-    .findOneBy({pessoa:{email: email, oauthIdentification: id }});
+        .findOne({
+            where: [
+                {
+                    pessoa: { email: email },
+                },
+                {
+                    pessoa: { oauthIdentification: id }
+                }
+            ]
+        });
 }
 
 export default {
