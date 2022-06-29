@@ -48,6 +48,6 @@ export class FacebookStrategyAuth extends Authentication {
     }
 
     async getUserIfAlreadySaved(user: any): Promise<any> {
-        return await produtorService.findByEmailOrId('', user.id);
+        return await produtorService.findByEmailOrOauthId('', user.id);
     }
 }

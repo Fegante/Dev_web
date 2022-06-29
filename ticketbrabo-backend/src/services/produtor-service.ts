@@ -9,12 +9,17 @@ function findByEmail(email: string) {
     return produtorRepo.findByEmail(email);
 }
 
-function findByEmailOrId(email: string, id: string) {
-    return produtorRepo.findByEmailOrId(email, id);
+function findByEmailOrOauthId(email: string, id: string) {
+    return produtorRepo.findByEmailOrOauthId(email, id);
+}
+
+function findById(id: number) {
+    return produtorRepo.findById(id);
 }
 
 export default {
     addOne,
     findByEmail,
-    findByEmailOrId,
+    findByEmailOrOauthId,
+    findById
 } as const;

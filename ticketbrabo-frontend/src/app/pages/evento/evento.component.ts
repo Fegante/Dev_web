@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppSettings } from 'src/app/app-settings';
 import { CardBackgroundEnum, CardModel, CardSpinnerEnum } from 'src/app/shared/models/card.model';
 import { ListCardItemModel } from 'src/app/shared/models/list-card-item.model';
@@ -17,8 +18,11 @@ export class EventoComponent implements OnInit {
   events: any[] = [];
 
   constructor (
+    private activedRoute: ActivatedRoute,
     private authNotificationService: AuthNotificationService,
-    private http: HttpClient) { }
+    private http: HttpClient) { 
+      console.log(this.activedRoute.snapshot)
+    }
 
   ngOnInit(): void {
     this.authNotificationService.user = {
