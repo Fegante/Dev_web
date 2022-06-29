@@ -7,7 +7,7 @@ import { StatusCodes } from "http-status-codes";
 const router = Router();
 const authService = new AuthenticationService();
 
-const {CREATED, OK} = StatusCodes;
+const {CREATED, OK, UNAUTHORIZED} = StatusCodes;
 
 export const paths = {
     type: '/:type',
@@ -19,8 +19,9 @@ router.post(paths.type, async (req, res) => {
     try {
         token = await authService.authentication(enumType, req.body);
     } catch(err) {
-        const urlRedirect = `${String(process.env.GOOGLE_REDIRECT_TO_UI)}/`;
-        return res.redirect(urlRedirect);
+        console.log(err);
+        const urlRedirect = `${String(process.env.REDIRECT_TO_UI)}/`;
+        return res.status(UNAUTHORIZED).send();
     }
     return res.send({type: "success", data: token});
 });
@@ -30,8 +31,7 @@ router.get(paths.type, async (req, res) => {
 
     try {
         const token = await authService.authentication(enumType, req.query);
-        console.log(token);
-        
+      
         res.cookie(COOKIE_NAME, token, {
             maxAge: 90000,
             secure: false,
@@ -43,8 +43,7 @@ router.get(paths.type, async (req, res) => {
 
     } catch(err) {
         console.log(err)
-        const urlRedirect = `${String(process.env.REDIRECT_TO_UI)}/produtor/new`;
-        return res.redirect(urlRedirect);
+        return res.status(UNAUTHORIZED).redirect("/");
     }
     
    

@@ -1,6 +1,4 @@
-import { Produtor } from "@models/produtor-model";
 import eventoService from "@services/evento-service";
-import produtorService from "@services/produtor-service";
 import { AuthorizationService } from "@shared/authorization/authorization-service";
 import { Router, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
@@ -8,7 +6,7 @@ import { verify } from "jsonwebtoken";
 
 const router = Router();
 
-const {CREATED, OK} = StatusCodes;
+const {CREATED, OK, NOT_ACCEPTABLE} = StatusCodes;
 
 export const paths = {
     add: '/add',
@@ -28,6 +26,11 @@ router.post(paths.add, async (req: Request, res: Response) => {
 });
 
 router.get(paths.get, AuthorizationService.isValidToken, async (req: Request, res: Response) => {
-    return res.status(CREATED).send({data: await eventoService.getAll()});
+    const user = await AuthorizationService.decodeToken(req);
+    if(user) {
+        return res.status(CREATED).send({data: await eventoService.getByProdutorId(user.id)});
+    }
+
+    return res.status(NOT_ACCEPTABLE).send({});
 });
 export default router;

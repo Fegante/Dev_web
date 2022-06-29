@@ -6,7 +6,8 @@ import { HomePageComponent } from "./home-page.component";
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { LoginModalComponent } from "./login-modal/login-modal.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MessageService } from "src/app/shared/services/message.service";
 
 @NgModule({
     declarations: [

@@ -21,7 +21,7 @@ export class EventoComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private authNotificationService: AuthNotificationService,
     private http: HttpClient) { 
-      console.log(this.activedRoute.snapshot)
+    
     }
 
   ngOnInit(): void {
@@ -31,81 +31,6 @@ export class EventoComponent implements OnInit {
       isAuth: true,
       token: "###DDD"
     };
-
-    this.events.push(
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-      {
-        id: "XDT",
-        image: "https://d2hnilqqbw3vnf.cloudfront.net/images/imagens/full/NDqPQJMhwVtlR3l01MKEuBebpQGpp8vXuzI8od7m.jpeg",
-        title: "2021 - Music Event",
-        date: "10/08/2022 22:00 - 04:00",
-        info: "Alguma info a mais"
-      },
-
-    );
-
 
     this.getEstoque();
     this.getEvents();
@@ -143,7 +68,9 @@ export class EventoComponent implements OnInit {
   }
 
   private tranformEvents(events: []) {
-    this.events = events.map(this.tranformEventInListCardItem);
+    if(events) {
+      this.events = events.map(this.tranformEventInListCardItem);
+    }
   }
 
   private tranformEventInListCardItem(event: any): ListCardItemModel{

@@ -17,9 +17,14 @@ function findById(id: number) {
     return produtorRepo.findById(id);
 }
 
+function findOneById(id: number) {
+    return produtorRepo.findOneById(id);
+}
+
 export default {
     addOne,
     findByEmail,
     findByEmailOrOauthId,
-    findById
+    findById,
+    findOneById
 } as const;

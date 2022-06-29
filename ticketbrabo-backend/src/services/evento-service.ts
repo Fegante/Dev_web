@@ -9,7 +9,12 @@ function getAll(): Promise<Evento[]>{
     return eventoRepo.get();
 }
 
+function getByProdutorId(id: number): Promise<Evento[]> {
+    return eventoRepo.getByProdutorId(id);
+}
+
 export default {
     addOne,
-    getAll
+    getAll,
+    getByProdutorId,
 } as const;

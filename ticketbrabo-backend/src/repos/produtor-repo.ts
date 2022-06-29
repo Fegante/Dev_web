@@ -30,7 +30,12 @@ async function findByEmailOrOauthId(email: string, id: string) {
 
 async function findById(id: number) {
     return await DatabaseSingleton.Instance.getRepository(Produtor)
-    .findBy({pessoa: {id: id}});
+    .findBy({id: id});
+}
+
+async function findOneById(id: number) {
+    return await DatabaseSingleton.Instance.getRepository(Produtor)
+    .findOneBy({id: id});
 }
 
 export default {
@@ -38,5 +43,6 @@ export default {
     getAll,
     findByEmail,
     findByEmailOrOauthId,
-    findById
+    findById,
+    findOneById
 } as const;

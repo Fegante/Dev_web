@@ -10,6 +10,9 @@ export class Pessoa extends PessoaBase{
 
     @Column({nullable: true})
     email: string;
+
+    @Column({nullable: true})
+    password: string;
     
     @Column({nullable: true})
     cpf: string;

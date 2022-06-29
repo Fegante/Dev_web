@@ -1,8 +1,11 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AppSettings } from "src/app/app-settings";
-import { FacebookInitializerService } from "src/app/shared/services/facebook-initializer.service";
+import { catchError } from "rxjs/operators";
+import { EMPTY, of } from "rxjs";
+import { MessageService } from "src/app/shared/services/message.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "homepage-login-modal",
@@ -16,7 +19,7 @@ export class LoginModalComponent implements OnInit{
     @Output()
     emitCloseLoginModal = new EventEmitter<boolean>();
 
-    constructor(private httpClient: HttpClient, private facebookAuth:FacebookInitializerService) {
+    constructor(private httpClient: HttpClient, private messageService: MessageService, private router: Router) {
 
     }
 
@@ -38,13 +41,22 @@ export class LoginModalComponent implements OnInit{
 
     onClickToSignIn() {
         if(this.form.valid && this.isFieldsWithValues()) {
+           
             this.httpClient.post(`${AppSettings.HTTPS}/api/auth/local`, this.form.value)
-            .subscribe(data => console.log(data));
+            .pipe(
+                catchError((err) => this.treateErrorLogin(err))
+                )
+            .subscribe( (data:any) => {
+
+                localStorage.setItem("authToken", data.data);
+                this.messageService.registerMessage("Logado com sucesso!")
+                this.router.navigate(["/evento"]);
+            });
+            
         }
     }
 
     loginWithFacebook() {
-        //this.facebookAuth.login();
         window.location.href = `https://www.facebook.com/v14.0/dialog/oauth?client_id=1430391037431832&redirect_uri=https://localhost/api/auth/facebook&state=teste&scope=["public_profile","email"]`;
     }
 
@@ -52,5 +64,14 @@ export class LoginModalComponent implements OnInit{
         return this.form.get("email")?.value != null
         && this.form.get("password")?.value != null
         && this.form.valid
-    } 
+    }
+
+    treateErrorLogin(error: any) {
+        if(error.status && error.status == 401) {
+            this.messageService.registerMessage("Usuário ou senha incorretos");
+        }
+
+        return of(EMPTY);
+    }
+
  }

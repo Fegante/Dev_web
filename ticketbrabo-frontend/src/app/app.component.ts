@@ -10,15 +10,9 @@ export class AppComponent {
   title = 'ticketbrabo-frontend';
   visible = true;
   eventos!: any;
-  constructor(
-    private httpclient: HttpClient
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.httpclient.get('http://localhost:3000/api/evento/query')
-    .subscribe((data) => {
-      this.eventos = data;
-      console.log(data)
-    })
+    
   }
 }
