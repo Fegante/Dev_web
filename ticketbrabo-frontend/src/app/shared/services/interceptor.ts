@@ -13,7 +13,7 @@ export class Interceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const cookie = this.getTokenFromLocalStorageOrCookie();
-    request = request.clone({ setHeaders: { 'biscoito':  cookie as string });
+    request = request.clone({ setHeaders: { 'biscoito':  cookie as string }});
     return next.handle(request);
   }
 
