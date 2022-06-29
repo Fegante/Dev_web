@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# env
+/ticketbrabo-backend/src/pre-start/env/development.env
+
 # compiled output
 /dist
 /ticketbrabo-frontend/dist

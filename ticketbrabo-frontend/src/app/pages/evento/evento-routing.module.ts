@@ -5,7 +5,7 @@ import { EventoComponent } from './evento.component';
 import { EventoResolve } from './evento.resolve';
 
 const routes: Routes = [
-  { path: '', component: EventoComponent },
+  { path: '', component: EventoComponent},
   { path: 'new', component: CadastroComponent, resolve: {resource: EventoResolve}}
 ];
 

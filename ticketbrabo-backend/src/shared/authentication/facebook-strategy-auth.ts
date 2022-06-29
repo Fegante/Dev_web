@@ -1,6 +1,11 @@
 import { Authentication } from "./authentication";
 import axios from "axios";
 import { sign } from "jsonwebtoken";
+import produtorService from "@services/produtor-service";
+import { Pessoa } from "@models/pessoa-model";
+import { PessoaEnum } from "@models/helper/pessoa-enum";
+import { PessoaFactory } from "@models/helper/pessoa-factory";
+import { Produtor } from "@models/produtor-model";
  
 export class FacebookStrategyAuth extends Authentication {
     
@@ -15,14 +20,10 @@ export class FacebookStrategyAuth extends Authentication {
         const facebookUser = await axios.get(urlToken)
         .then(res => res.data)
         .catch(err => { throw new Error(err.mesage) });
-
-        return facebookUser.data;
+        
+        return facebookUser;
     }
 
-    async generateJWTToken(user: any): Promise<string> {
-        const jwtToken =  await sign(user, this.JWT_SECRET, {expiresIn: this.JWT_EXPIRES});
-        return jwtToken;
-    }
 
     async switchCodeForToken(code: string) {
         const url = `https://graph.facebook.com/v14.0/oauth/access_token?client_id=${this.FACEBOOK_APP_ID}&redirect_uri=${this.FACEBOOK_REDIRECT_TO}&client_secret=${this.FACEBOOK_SECRET}&code=${code}`;
@@ -35,6 +36,18 @@ export class FacebookStrategyAuth extends Authentication {
     }
 
     async saveNewUser(user: any): Promise<any> {
+        const produtor = PessoaFactory.criarPessoa(PessoaEnum.PRODUTOR) as Produtor;
         
+        produtor.pessoa = { 
+            oauthIdentification: user.id,
+            nome: user.name,
+            isRegistrationCompleted: false
+         } as Pessoa;
+    
+        return produtorService.addOne(produtor);
+    }
+
+    async getUserIfAlreadySaved(user: any): Promise<any> {
+        return await produtorService.findByEmailOrOauthId('', user.id);
     }
 }

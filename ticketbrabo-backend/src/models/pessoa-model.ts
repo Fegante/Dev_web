@@ -1,8 +1,9 @@
 import { Column, Entity } from "typeorm";
 import { BaseEntity_ } from "./commons/baseEntity-model";
+import { PessoaBase } from "./commons/pessoa-base";
 
 @Entity()
-export class Pessoa extends BaseEntity_{
+export class Pessoa extends PessoaBase{
  
     @Column({name:"nome", type: "varchar"})
     nome: string;

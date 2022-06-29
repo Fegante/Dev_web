@@ -1,28 +1,31 @@
-import produtorService from "@services/produtor-service";
+import { sign } from "jsonwebtoken";
 
 export abstract class Authentication {
-    
-    // TODO: refactor dot env access
+    protected user: any;
+
     protected JWT_SECRET = String(process.env.JWT_SECRET);
     protected JWT_EXPIRES = process.env.JWT_EXPIRES;
 
-    async authentication(options?: any) {
-        const user = await this.getUserByAuthMethod(options);
+    async makeAuth(options?: any) {
 
-        if(await this.isAlreadySignUp(user)) {
-            return this.generateJWTToken(user);
+        const userAuth = await this.getUserByAuthMethod(options);
+        this.user = await this.getUserIfAlreadySaved(userAuth)
+
+        if (!this.user) {
+            this.user = this.saveNewUser(userAuth)
         }
-    
-        return this.saveNewUser(user);;
+
+        return this.generateJWTToken();
+
     }
 
-    async isAlreadySignUp(user: any): Promise<boolean> {
-        const produtor = await produtorService.findByEmail(user.email);
-        return produtor != null;
+    async generateJWTToken(): Promise<string> {
+        return await sign({ id: this.user.id, email: this.user.email },
+            this.JWT_SECRET, { expiresIn: this.JWT_EXPIRES });
     }
 
 
     abstract getUserByAuthMethod(options?: any): any;
-    abstract generateJWTToken(user: any): Promise<string>;
+    abstract getUserIfAlreadySaved(user: any): any;
     abstract saveNewUser(user: any): Promise<any>;
 }

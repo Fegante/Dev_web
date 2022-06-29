@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AppSettings } from "src/app/app-settings";
 import { IFormSchema } from "../../models/form-item.model";
 import { FormResourceService } from "../../services/form-resource.service";
 
@@ -41,7 +42,7 @@ export class CadastroComponent implements OnInit{
     onSubmit(){
         if(this.form.valid){
             
-            this.http.post(`http://localhost:3000/api/${this.schema.resourceName}/add`, this.form.value).subscribe(result => {
+            this.http.post(`${AppSettings.HTTPS}/api/${this.schema.resourceName}/add`, this.form.value).subscribe(result => {
                 console.log(result);
             });
         }

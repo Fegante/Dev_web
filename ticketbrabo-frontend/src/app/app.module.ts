@@ -6,6 +6,10 @@ import { SharedModule } from './shared/shared.modules';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { CanActivateRouteGuard } from './shared/services/can-activate-route.guard';
+import { AuthenticationService } from './shared/services/authentication.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @NgModule({
   declarations: [
@@ -17,10 +21,11 @@ import { MatBadgeModule } from '@angular/material/badge';
     SharedModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatBadgeModule 
+    MatBadgeModule
   ],
   providers: [
-
+    CanActivateRouteGuard,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

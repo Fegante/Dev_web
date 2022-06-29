@@ -14,14 +14,29 @@ async function findByEmail(email: string) {
     return await DatabaseSingleton.Instance.getRepository(Produtor).findOne({where: {pessoa: {email: email}}, relations: ["pessoa"]});
 }
 
-async function findByEmailOrId(email: string, id: string) {
+async function findByEmailOrOauthId(email: string, id: string) {
     return await DatabaseSingleton.Instance.getRepository(Produtor)
-    .findOneBy({pessoa:{email: email, oauthIdentification: id }});
+        .findOne({
+            where: [
+                {
+                    pessoa: { email: email },
+                },
+                {
+                    pessoa: { oauthIdentification: id }
+                }
+            ]
+        });
+}
+
+async function findById(id: number) {
+    return await DatabaseSingleton.Instance.getRepository(Produtor)
+    .findBy({pessoa: {id: id}});
 }
 
 export default {
     save,
     getAll,
     findByEmail,
-    findByEmailOrId
+    findByEmailOrOauthId,
+    findById
 } as const;

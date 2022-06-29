@@ -31,6 +31,7 @@ router.get(paths.type, async (req, res) => {
     try {
         const token = await authService.authentication(enumType, req.query);
         console.log(token);
+        
         res.cookie(COOKIE_NAME, token, {
             maxAge: 90000,
             secure: false,
