@@ -38,8 +38,7 @@ router.get(paths.type, async (req, res) => {
             httpOnly: false,
         });
 
-        const urlRedirect = `${String(process.env.REDIRECT_TO_UI)}/evento`;
-        return res.redirect(urlRedirect);
+        return res.redirect(`${String(process.env.REDIRECT_TO_UI)}`);
 
     } catch(err) {
         console.log(err)
