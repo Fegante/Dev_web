@@ -11,7 +11,6 @@ import { AuthenticationService } from './shared/services/authentication.service'
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 
-
 @NgModule({
   declarations: [
     AppComponent

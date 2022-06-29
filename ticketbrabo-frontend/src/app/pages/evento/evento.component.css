@@ -75,12 +75,6 @@ header h2{
     border-bottom-right-radius: 50px;
 }
 
-.list-eventos app-list-card{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 420px);
-    row-gap: 10px;
-    column-gap: 50px;
-}
 
 
 /* LIST PRODUTOS EVENTO */

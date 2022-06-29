@@ -1,52 +1,42 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+
+
+@Directive({selector: 'child-directive'})
+class ChildDirective {
+}
 
 @Component({
   selector: 'app-list-card',
   templateUrl: './list-card.component.html',
   styleUrls: ['./list-card.component.css']
 })
-export class ListCardComponent implements OnInit, OnDestroy {
+export class ListCardComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild("listCardChild") 
+  listCardChild: any;
 
   @Input()
   public listCard!: any[];
   private activeCardItem: any;
 
-  private changeCard = new EventEmitter();
+  @Output()
+  changedCard = new EventEmitter();
   private subscription!: Subscription;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2) {
+  }
 
   ngOnInit(): void {
-   this.subscription = this.changeCard.subscribe((c) => this.onSelectedCard(c));
+   this.subscription = this.changedCard.subscribe((c) => this.getCardHtmlAndToggleClass(c));
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  onClickCard(cardId: string, event: any): void {
-    const source: any = this.isClickOnCard(event);
-    if (!source) return;
-
-    if (this.activeCardItem && this.activeCardItem != event.srcElement) {
-      this.toggleClassAndActiveCard(this.activeCardItem, { key: "border", value: "2px solid transparent" });
-      this.toggleClassAndActiveCard(source, { key: "border", value: "2px solid var(--hoverColor)" });
-
-      return;
-    }
-
-    this.toggleClassAndActiveCard(source, { key: "border", value: "2px solid var(--hoverColor)" });
-
-  }
-
-  toggleClassAndActiveCard(element: any, style: { [key: string]: string }) {
-    this.renderer.setStyle(element, style.key, style.value);
-    this.activeCardItem = element;
-  }
-
-  isClickOnCard(target: any): any {
-    return target.path.filter((p: any) => p.classList && p.classList.contains("cardItem"))[0];
+  ngAfterViewInit(): void {
+    this.setDefaultCardActived();
   }
 
   toggleClass(newSelectedCard: any) {
@@ -59,14 +49,31 @@ export class ListCardComponent implements OnInit, OnDestroy {
     this.toggleClassAndActiveCard(newSelectedCard, { key: "border", value: "2px solid var(--hoverColor)" });
   }
 
-  emitCardChange(event: any) {
-    const card = this.isClickOnCard(event);
-    if(card){
-      this.changeCard.emit(card);
+  toggleClassAndActiveCard(element: any, style: { [key: string]: string }) {
+    this.renderer.setStyle(element, style.key, style.value);
+    this.activeCardItem = element;
+  }
+
+  emitCardChange(card: any) {
+    if(!this.activeCardItem || this.activeCardItem.id != card.id){
+      this.changedCard.emit(card);
     }
   }
 
-  onSelectedCard(card: any) {
-    this.toggleClass(card);
+  getCardHtmlAndToggleClass(card: any) {
+    const cardHTML = this.getElementByCardId(this.listCardChild.nativeElement.children, card.id);
+    if(cardHTML.length > 0) {
+      this.toggleClass(cardHTML[0]);
+    }
+  }
+
+  getElementByCardId(children: any[], id: string) {
+    return Array.from(children).filter(c => c.id == id);
+  }
+
+  setDefaultCardActived() {
+    if(this.listCard.length > 0){
+      this.emitCardChange(this.listCard[0]);
+    }
   }
 }

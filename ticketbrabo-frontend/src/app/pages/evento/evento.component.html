@@ -22,7 +22,12 @@
         </section>
 
         <section class="list-eventos">
-            <app-list-card [listCard]="this.events"></app-list-card>
+            <app-list-card
+                *ngIf="this.events.length > 0"
+                [listCard]="this.events" 
+                
+                (changedCard)="onChangedCard($event)">
+            </app-list-card>
         </section>
 
     </section>
