@@ -10,7 +10,6 @@ import { CanActivateRouteGuard } from './shared/services/can-activate-route.guar
 import { AuthenticationService } from './shared/services/authentication.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

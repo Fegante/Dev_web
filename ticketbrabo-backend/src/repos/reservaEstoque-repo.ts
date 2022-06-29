@@ -19,7 +19,23 @@ async function getAll(){
     });
 }
 
+async function getByWhere(where: {}) {
+    return await DatabaseSingleton.Instance
+    .getRepository(ReservaEstoque)
+    .find({
+        where: {
+            ...where
+        },
+        relations: {
+            produto: {
+                categoriaProduto: true
+            }
+        }
+    });
+}
+
 export default {
     save,
-    getAll
+    getAll,
+    getByWhere
 } as const;

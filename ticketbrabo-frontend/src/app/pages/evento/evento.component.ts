@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatCardFooter } from '@angular/material/card';
 import { AppSettings } from 'src/app/app-settings';
 import { CardBackgroundEnum, CardModel, CardSpinnerEnum } from 'src/app/shared/models/card.model';
 import { ListCardItemModel } from 'src/app/shared/models/list-card-item.model';
@@ -32,13 +33,12 @@ export class EventoComponent implements OnInit {
       token: "###DDD"
     };
 
-    this.getEstoque();
     this.getEvents();
   }
 
   
-  private getEstoque() {
-    this.http.get(`${AppSettings.HTTPS}/api/reserva-estoque/query`)
+  private getEstoque(eventoId: number) {
+    this.http.get(`${AppSettings.HTTPS}/api/reserva-estoque/evento/${eventoId}`)
     .subscribe((response: any) => this.tranformReservaEstoques(response.data));
   }
 
@@ -61,7 +61,6 @@ export class EventoComponent implements OnInit {
     
   }
 
-
   private getEvents() {
     this.http.get(`${AppSettings.HTTPS}/api/evento/query`)
     .subscribe((response: any) => this.tranformEvents(response.data));
@@ -81,5 +80,9 @@ export class EventoComponent implements OnInit {
       image: EventoComponent.DEFAULT_EVENT_IMAGE,
       info: "Evento"
     };
+  }
+
+  onChangedCard(card: any) {
+    this.getEstoque(card.id);
   }
 }
