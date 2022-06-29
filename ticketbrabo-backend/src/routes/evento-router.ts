@@ -18,10 +18,10 @@ export const paths = {
 
 router.post(paths.add, async (req: Request, res: Response) => {
 
-    const biscoito = verify(req.headers.biscoito as string,process.env.JWT_SECRET as string) as any
+    const token = verify(req.headers.token as string,process.env.JWT_SECRET as string) as any
     
     const evento = req.body;
-    evento.produtor = biscoito
+    evento.produtor = token;
     
     await eventoService.addOne(evento);
     return res.status(CREATED).end();
