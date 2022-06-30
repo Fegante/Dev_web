@@ -12,7 +12,7 @@ export abstract class Authentication {
         this.user = await this.getUserIfAlreadySaved(userAuth)
 
         if (!this.user) {
-            this.user = this.saveNewUser(userAuth)
+            this.user = await this.saveNewUser(userAuth)
         }
 
         return this.generateJWTToken();

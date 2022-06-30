@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppSettings } from "src/app/app-settings";
-import { IFormSchema } from "../../models/form-item.model";
+import { FormItemTypeEnum, IFormSchema } from "../../models/form-item.model";
 import { FormResourceService } from "../../services/form-resource.service";
 
 @Component({
@@ -32,11 +32,36 @@ export class CadastroComponent implements OnInit{
 
     
     ngOnInit() {
-        this.form = this.formBuilder.group(this.formResourceService.defineGroupForm(this.schema.fields, this.resourceName));
+        this.obtainDataWhenIdExists();
     }
 
     onClickBack(){
         this.router.navigate(['../'], {relativeTo: this.activedRoute});
+    }
+
+    obtainDataWhenIdExists() {
+       const id = this.activedRoute.snapshot.paramMap.get("id");
+       if(id) {
+           this.http.get(`${AppSettings.HTTPS}/api/${this.resourceName}/${id}`)
+           .subscribe((entity: any) => {
+               console.log(this.schema.fields)
+               for(let field of this.schema.fields) {
+                   console.log(entity[field.name])
+                   field.value = entity[field.name];
+                   if(field.type == FormItemTypeEnum.DATE_TIME){
+                       field.value = entity[field.name].replace("Z","");
+                   }
+                   if(field.group) {
+                       field.value = entity[field.group][field.name];
+                   }
+               }
+
+               console.log(this.schema.fields)
+           });
+       }
+
+       this.form = this.formBuilder.group(this.formResourceService.defineGroupForm(this.schema.fields, this.resourceName));
+
     }
 
     onSubmit(){

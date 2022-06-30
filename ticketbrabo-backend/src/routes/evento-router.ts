@@ -12,6 +12,7 @@ const {CREATED, OK, NOT_ACCEPTABLE} = StatusCodes;
 export const paths = {
     add: '/add',
     get: '/query',
+    getById: '/:id'
 };
 
 
@@ -33,4 +34,9 @@ router.get(paths.get, AuthorizationService.isValidToken, async (req: Request, re
 
     return res.status(NOT_ACCEPTABLE).send({});
 });
+
+router.get(paths.getById, AuthorizationService.isValidToken, async (req: Request, res: Response) => {
+    return res.status(OK).send(await eventoService.getOneById(Number.parseInt(req.params.id)));
+});
+
 export default router;

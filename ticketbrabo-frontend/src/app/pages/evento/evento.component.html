@@ -25,7 +25,7 @@
             <app-list-card
                 *ngIf="this.events.length > 0"
                 [listCard]="this.events" 
-                
+                [urlToRedirect]="'evento/'"
                 (changedCard)="onChangedCard($event)">
             </app-list-card>
         </section>
@@ -39,7 +39,11 @@
             </header>
 
             <div class="cardSimples">
-                <app-card-simple [width]="130" [height]="130"></app-card-simple>
+                <app-card-simple 
+                    [cards]="this.statisticsCards" 
+                    [width]="130" 
+                    [height]="130">
+                </app-card-simple>
             </div>
         </div>
 

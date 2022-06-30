@@ -13,8 +13,13 @@ function getByProdutorId(id: number): Promise<Evento[]> {
     return eventoRepo.getByProdutorId(id);
 }
 
+function getOneById(id: number): Promise<Evento | null> {
+    return eventoRepo.getOneById(id);
+}
+
 export default {
     addOne,
     getAll,
     getByProdutorId,
+    getOneById
 } as const;

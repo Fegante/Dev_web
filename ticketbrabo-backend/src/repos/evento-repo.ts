@@ -25,8 +25,13 @@ async function getByProdutorId(id: number): Promise<Evento[]> {
         });
 }
 
+async function getOneById(id: number): Promise<Evento | null> {
+    return DatabaseSingleton.Instance.getRepository(Evento).findOne({where: {id: id}, relations: {localidade: true}});
+}
+
 export default {
     add,
     get,
-    getByProdutorId
+    getByProdutorId,
+    getOneById
 } as const;

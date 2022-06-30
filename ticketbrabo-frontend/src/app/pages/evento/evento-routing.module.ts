@@ -6,7 +6,9 @@ import { EventoResolve } from './evento.resolve';
 
 const routes: Routes = [
   { path: '', component: EventoComponent},
-  { path: 'new', component: CadastroComponent, resolve: {resource: EventoResolve}}
+  { path: 'new', component: CadastroComponent, resolve: {resource: EventoResolve}},
+  { path: ':id', component: CadastroComponent, resolve: {resource: EventoResolve}}
+
 ];
 
 @NgModule({

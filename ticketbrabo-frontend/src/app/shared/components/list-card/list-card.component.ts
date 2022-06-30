@@ -1,4 +1,5 @@
 import { AfterContentInit, AfterViewInit, Component, Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 
@@ -18,13 +19,19 @@ export class ListCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input()
   public listCard!: any[];
-  private activeCardItem: any;
+  
+  @Input()
+  public urlToRedirect!: string;
 
   @Output()
   changedCard = new EventEmitter();
+
+  private activeCardItem: any;
+
+
   private subscription!: Subscription;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -75,5 +82,10 @@ export class ListCardComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.listCard.length > 0){
       this.emitCardChange(this.listCard[0]);
     }
+  }
+
+
+  clickToEditItem(cardId: string) {
+    this.router.navigate([`${this.urlToRedirect}/${cardId}`]);
   }
 }

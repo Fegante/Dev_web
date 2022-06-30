@@ -8,12 +8,22 @@
             <label for="{{input.id}}">{{input.label}}:</label>
             <div *ngIf="input.group; else elseBlock">
                 <div formGroupName="{{input.group}}">
-                    <input [formControlName]="input.name" [type]="input.type" [name]="input.name" [id]="input.id"
+                    <input 
+                        [formControlName]="input.name" 
+                        [type]="input.type" 
+                        [name]="input.name" 
+                        [id]="input.id"
+                        [value]="input.value"
                         [placeholder]="input.placeholder">
                 </div>
             </div>
             <ng-template #elseBlock>
-                <input [formControlName]="input.name" [type]="input.type" [name]="input.name" [id]="input.id"
+                <input 
+                    [formControlName]="input.name" 
+                    [type]="input.type" 
+                    [name]="input.name" 
+                    [id]="input.id"
+                    [value]="input.value"
                     [placeholder]="input.placeholder">
             </ng-template>
 

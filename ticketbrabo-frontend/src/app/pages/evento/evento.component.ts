@@ -17,6 +17,7 @@ export class EventoComponent implements OnInit {
 
   cards: any[] = [];
   events: any[] = [];
+  statisticsCards: any[] = [];
 
   constructor (
     private activedRoute: ActivatedRoute,
@@ -85,4 +86,5 @@ export class EventoComponent implements OnInit {
   onChangedCard(card: any) {
     this.getEstoque(card.id);
   }
+
 }
