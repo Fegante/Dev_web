@@ -4,13 +4,13 @@ import { UserModel } from "../models/user.model";
 
 @Injectable({providedIn: 'root'})
 export class AuthNotificationService extends ObservableModel {
-    private _user!: UserModel;
+    private _user!: UserModel | null;
    
     public get user() {
         return this._user;
     }
 
-    public set user(user: UserModel) {
+    public set user(user: UserModel | null) {
         this._user = user;
         this.notifyObservers();
     }

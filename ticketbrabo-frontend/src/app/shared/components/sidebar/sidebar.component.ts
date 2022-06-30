@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.authNotificationService.addObserver(({user}: any) => {
-      if (user.isAuth) {
+      if (user) {
         this.menuItems = [{
           class: "iconEvento",
           text: "Eventos",

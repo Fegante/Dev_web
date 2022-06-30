@@ -44,9 +44,8 @@ export class CadastroComponent implements OnInit{
        if(id) {
            this.http.get(`${AppSettings.HTTPS}/api/${this.resourceName}/${id}`)
            .subscribe((entity: any) => {
-               console.log(this.schema.fields)
-               for(let field of this.schema.fields) {
-                   console.log(entity[field.name])
+              
+               for(let field of this.schema.fields) {    
                    field.value = entity[field.name];
                    if(field.type == FormItemTypeEnum.DATE_TIME){
                        field.value = entity[field.name].replace("Z","");
@@ -56,11 +55,11 @@ export class CadastroComponent implements OnInit{
                    }
                }
 
-               console.log(this.schema.fields)
+               this.form = this.formBuilder.group(this.formResourceService.defineGroupForm(this.schema.fields, this.resourceName));
+
            });
        }
 
-       this.form = this.formBuilder.group(this.formResourceService.defineGroupForm(this.schema.fields, this.resourceName));
 
     }
 

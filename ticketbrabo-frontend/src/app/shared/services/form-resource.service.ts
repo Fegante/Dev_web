@@ -16,20 +16,17 @@ export class FormResourceService {
     public defineGroupForm(schemaFields: any, resourceName: string): FormGroup {
         this.resourceName = resourceName;
         const fields: any = this.agroupResourceField(schemaFields);
-
         const values = Object.values(fields[this.resourceName]);
+       
         values.forEach((field: any) => {
-
+            
             if (field instanceof Array) {
                 this.defineMultiField(field);
-                console.log("aqui")
-                console.log(this.fieldsAgrupados);
             } else {
                 const key = field.name;
-                this.fieldsAgrupados[key] = '';
+                this.fieldsAgrupados[key] = field.value;
             }
         });
-
         return this.fieldsAgrupados;
     }
 
@@ -53,7 +50,7 @@ export class FormResourceService {
         const fieldsAgrupados: any = {};
         fields.forEach((child: any) => {
             groupName = child.group;
-            fieldsAgrupados[child.name] = '';
+            fieldsAgrupados[child.name] = child.value;
         });
        
         if(groupName != null){

@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatCardFooter } from '@angular/material/card';
 import { AppSettings } from 'src/app/app-settings';
 import { CardBackgroundEnum, CardModel, CardSpinnerEnum } from 'src/app/shared/models/card.model';
 import { ListCardItemModel } from 'src/app/shared/models/list-card-item.model';
 import { AuthNotificationService } from 'src/app/shared/services/auth-notification.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-evento',
@@ -20,20 +19,17 @@ export class EventoComponent implements OnInit {
   statisticsCards: any[] = [];
 
   constructor (
-    private activedRoute: ActivatedRoute,
+    private authService: AuthenticationService,
     private authNotificationService: AuthNotificationService,
     private http: HttpClient) { 
     
     }
 
   ngOnInit(): void {
-    this.authNotificationService.user = {
-      nome: 'Ezequiel',
-      role: 'Produtor',
-      isAuth: true,
-      token: "###DDD"
-    };
-
+    if(this.authNotificationService.user == null) {
+      const user = this.authService.getUserByToken();
+      this.authNotificationService.user = user;
+  }
     this.getEvents();
   }
 
