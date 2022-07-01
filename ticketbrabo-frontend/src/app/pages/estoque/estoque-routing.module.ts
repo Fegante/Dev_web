@@ -6,7 +6,7 @@ import { EstoqueResolve } from './estoque.resolve';
 
 const routes: Routes = [
   { path: '', component: EstoqueComponent},
-  { path: 'new', component: CadastroComponent, resolve: {resource: EstoqueResolve}}
+  { path: 'new', redirectTo: '/produto/new'}
 ];
 
 @NgModule({

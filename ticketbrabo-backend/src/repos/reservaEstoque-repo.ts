@@ -1,4 +1,5 @@
 import { DatabaseSingleton } from "@configs/db";
+import { Produto } from "@models/produto-model";
 import { ReservaEstoque } from "@models/reserva-estoque-model";
 
 
@@ -34,8 +35,21 @@ async function getByWhere(where: {}) {
     });
 }
 
+async function getOneById(token: number, id: number) {
+    return await DatabaseSingleton.Instance
+    .getRepository(Produto)
+    .findOne({
+        where: {
+            produtor: { id: token },
+            id: id
+        },
+        relations: {categoriaProduto: true}
+    });
+}
+
 export default {
     save,
     getAll,
-    getByWhere
+    getByWhere,
+    getOneById
 } as const;

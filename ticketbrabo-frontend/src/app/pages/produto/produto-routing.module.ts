@@ -5,6 +5,7 @@ import { ProdutoResolve } from "./produto.resolve";
 
 const routes: Routes = [
     { path: 'new', component: CadastroComponent, resolve: {resource: ProdutoResolve} },
+    { path: ':id', component: CadastroComponent, resolve: {resource: ProdutoResolve} },
     { path: '', redirectTo: '/evento'}
 ]
 @NgModule({
