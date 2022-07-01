@@ -14,7 +14,7 @@ const {CREATED, OK} = StatusCodes;
 
 export const paths = {
     add: '/add',
-    query: '/query'
+    query: '/query',
     getStatistic: '/estatistica'
 };
 

@@ -24,7 +24,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.addMenuItems(user);
     });
     
-    this.menuItems = menuNotAtuhResource;
   }
   
   ngOnDestroy(): void {
@@ -32,6 +31,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   addMenuItems(user: any) {
+    console.log(user)
     if(user) {
       this.menuItems = [{
         class: "iconEvento",
