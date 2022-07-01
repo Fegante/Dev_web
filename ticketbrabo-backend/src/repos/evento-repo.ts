@@ -29,9 +29,16 @@ async function getOneById(id: number): Promise<Evento | null> {
     return DatabaseSingleton.Instance.getRepository(Evento).findOne({where: {id: id}, relations: {localidade: true}});
 }
 
+async function deleteOne(id: number, token: number): Promise<void> {
+    await DatabaseSingleton.Instance.getRepository(Evento).delete({id: id});
+    return;
+}
+
+
 export default {
     add,
     get,
     getByProdutorId,
     getOneById,
+    deleteOne
 } as const;

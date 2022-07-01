@@ -19,7 +19,7 @@
                     <mat-icon>notifications_off</mat-icon>
                     <span>Desativar notificações</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="clickToDeleteItem(card.id)">
                     <mat-icon>delete</mat-icon>
                     <span>Excluir</span>
                 </button>

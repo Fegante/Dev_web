@@ -1,6 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterContentInit, AfterViewInit, Component, Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { EMPTY, of, Subscription } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { AppSettings } from 'src/app/app-settings';
+import { MessageService } from '../../services/message.service';
 
 
 @Directive({selector: 'child-directive'})
@@ -31,7 +35,10 @@ export class ListCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private subscription!: Subscription;
 
-  constructor(private renderer: Renderer2, private router: Router) {
+  constructor(private renderer: Renderer2, 
+              private router: Router,
+              private messageService: MessageService,
+              private httpCliente: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -87,5 +94,22 @@ export class ListCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   clickToEditItem(cardId: string) {
     this.router.navigate([`${this.urlToRedirect}/${cardId}`]);
+  }
+
+  clickToDeleteItem(cardId: string) {
+    this.httpCliente.delete(`${AppSettings.HTTPS}/api/${this.urlToRedirect}${cardId}`)
+    .pipe(catchError((err) => this.treateErrorDelete(err)))
+    .subscribe((data: any) => {
+                  this.messageService.registerMessage("Removido com sucesso!");
+                  this.router.navigate(["."]);
+                });
+  }
+
+  treateErrorDelete(error: any) {
+    if (error.status && error.status == 401) {
+      this.messageService.registerMessage("Erro ao remover");
+    }
+
+    return of(EMPTY);
   }
 }

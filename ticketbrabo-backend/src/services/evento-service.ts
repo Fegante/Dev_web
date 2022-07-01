@@ -17,9 +17,14 @@ function getOneById(id: number): Promise<Evento | null> {
     return eventoRepo.getOneById(id);
 }
 
+function deleteOne(id: number, token: number): Promise<void> {
+    return eventoRepo.deleteOne(id, token);
+}
+
 export default {
     addOne,
     getAll,
     getByProdutorId,
-    getOneById
+    getOneById,
+    deleteOne
 } as const;

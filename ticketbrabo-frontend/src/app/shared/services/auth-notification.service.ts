@@ -9,7 +9,6 @@ export class AuthNotificationService extends ObservableModel {
 
     constructor(private authenticationService: AuthenticationService) {
         super();
-        console.log("sjaj")
         if(this.authenticationService.isTokeNotNull()) {
             this.user = this.authenticationService.getUserByToken();
         }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthNotificationService } from '../../services/auth-notification.service';
 import { menuNotAtuhResource } from './not-auth-menu.resource';
 
@@ -7,23 +7,30 @@ import { menuNotAtuhResource } from './not-auth-menu.resource';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   
-  public menuItems!: any[];
+  public menuItems: any[] = [];
   private subscription: any;
 
-  constructor(private authNotificationService: AuthNotificationService) {
+  constructor(
+    private authenticationService: AuthNotificationService,
+    private authNotificationService: AuthNotificationService) {
   }
 
   ngOnInit(): void {
-    if(this.authNotificationService.user) {
-      this.addMenuItems(this.authNotificationService.user);
+    if(this.authenticationService.user) {
+      //this.addMenuItems(this.authenticationService.user);
     }
-    
-    this.subscription = this.authNotificationService.addObserver(({user}: any) => {
+
+
+    this.addMenuItems(this.authenticationService.user);
+  }
+
+  ngAfterViewInit(): void {
+      this.subscription = this.authNotificationService.addObserver(({ user }: any) => {
         this.addMenuItems(user);
-    });
-    
+      });
+  
   }
   
   ngOnDestroy(): void {
@@ -31,7 +38,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   addMenuItems(user: any) {
-    console.log(user)
     if(user) {
       this.menuItems = [{
         class: "iconEvento",
