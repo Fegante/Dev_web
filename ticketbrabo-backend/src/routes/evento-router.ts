@@ -35,7 +35,7 @@ router.post(paths.add, AuthorizationService.isValidToken, async (req: Request, r
     
     const evento = req.body;
     evento.produtor = token;
-    
+    console.log(evento)
     await eventoService.addOne(evento);
     return res.status(CREATED).end();
 });

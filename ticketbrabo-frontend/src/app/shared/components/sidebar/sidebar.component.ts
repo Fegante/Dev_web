@@ -43,6 +43,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
       {
         class: "iconProduto",
         text: "Produtos",
+        textActive: 'iconActive',
+        routerLink: '/produto/new'
+      },
+      {
+        class: "iconProduto",
+        text: "Estoque Total",
+        textActive: 'iconActive',
+        routerLink: '/estoque'
       }];
     } else {
       this.menuItems = menuNotAtuhResource;
