@@ -9,13 +9,14 @@ function getOne(id: number): Promise<Produto | null>{
     return produtoRepo.getOne(id);
 }
 
-function save(produto: Produto): Promise<Produto> {
-    return produtoRepo.save(produto);
+function addOne(produto: Produto): Promise<Produto> {
+    return produtoRepo.addOne(produto);
 }
+
 
 
 export default {
     update,
     getOne,
-    save
+    addOne
 } as const;

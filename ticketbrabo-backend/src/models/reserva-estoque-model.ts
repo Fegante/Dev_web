@@ -9,8 +9,7 @@ export class ReservaEstoque extends BaseEntity_{
     @Column()
     quantidade: number;
 
-    @OneToOne(() => Produto)
-    @JoinColumn()
+    @ManyToOne(() => Produto, (produto) => produto.reservasEstoque)
     produto: Produto;
 
     @ManyToOne(() => Evento, (evento) => evento.reservasEstoque)

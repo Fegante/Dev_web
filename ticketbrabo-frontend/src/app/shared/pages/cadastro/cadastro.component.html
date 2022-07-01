@@ -6,8 +6,8 @@
     <form [formGroup]="this.form" (ngSubmit)="onSubmit()">
         <div *ngFor="let input of this.schema.fields">
             <label for="{{input.id}}">{{input.label}}:</label>
-            <div *ngIf="input.group; else elseBlock">
-                <div formGroupName="{{input.group}}">
+            <div *ngIf="input.group; else elseBlock" style="display: contents;"> 
+                <div formGroupName="{{input.group}}" style="display: contents;">
                     <input [formControlName]="input.name" [type]="input.type" [name]="input.name" [id]="input.id"
                         [placeholder]="input.placeholder">
                 </div>

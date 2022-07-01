@@ -2,14 +2,18 @@ import { CategoriaProduto } from "@models/categoria-produto-model";
 import { Produto } from "@models/produto-model";
 import categoriaProdutoRepo from "@repos/categoriaProduto-repo";
 import produtoRepo from "@repos/produto-repo";
+import produtoService from "@services/produto-service";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
+import { verify } from "jsonwebtoken";
+
 
 const router = Router();
 const {CREATED, OK} = StatusCodes;
 
 export const paths = {
-    add: '/add'
+    add: '/add',
+    query: '/query'
 };
 
 router.get(paths.add, async (req: Request, res: Response) => {
@@ -27,10 +31,30 @@ router.get(paths.add, async (req: Request, res: Response) => {
 
     
     await categoriaProdutoRepo.save(categoria);
-    const resp = await produtoRepo.save(produto);
+    const resp = await produtoRepo.addOne(produto);
     const result = await produtoRepo.getOne(produto.id);
     
     return res.status(CREATED).send(result).end();
 })
+
+router.post(paths.add, async (req: Request, res: Response) => {
+    const token = verify(req.headers.token as string,process.env.JWT_SECRET as string) as any
+
+    const evento = req.body;
+    evento.produtor = token;
+    console.log(evento)
+
+    await produtoService.addOne(evento);
+    return res.status(CREATED).end();
+});
+
+router.get(paths.query, async (req: Request, res: Response) => {
+    const token = verify(req.headers.token as string,process.env.JWT_SECRET as string) as any
+    console.log(token)
+    console.log(await produtoRepo.getAll(token.id))
+
+    return res.send( {data: await produtoRepo.getAll(token.id)});
+
+});
 
 export default router;

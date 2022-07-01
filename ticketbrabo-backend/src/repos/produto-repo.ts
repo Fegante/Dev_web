@@ -9,7 +9,11 @@ async function getOne(id: number): Promise<Produto | null>{
     return await DatabaseSingleton.Instance.getRepository(Produto).findOneBy({id: id});
 }
 
-async function save(produto: Produto): Promise<Produto>{
+async function getAll(id: number): Promise<Produto[]>{
+    return await DatabaseSingleton.Instance.getRepository(Produto).find({where:{produtor: {id: id}}, relations: {categoriaProduto: true}});
+}
+
+async function addOne(produto: Produto): Promise<Produto>{
     return await  DatabaseSingleton.Instance
     .getRepository(Produto)
     .save(produto);
@@ -18,5 +22,6 @@ async function save(produto: Produto): Promise<Produto>{
 export default {
     update,
     getOne,
-    save
+    addOne,
+    getAll,
 } as const;

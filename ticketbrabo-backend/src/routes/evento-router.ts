@@ -20,7 +20,7 @@ router.post(paths.add, async (req: Request, res: Response) => {
     
     const evento = req.body;
     evento.produtor = token;
-    
+    console.log(evento)
     await eventoService.addOne(evento);
     return res.status(CREATED).end();
 });
