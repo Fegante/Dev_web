@@ -15,7 +15,7 @@
             <app-list-card
                 *ngIf="this.events.length > 0"
                 [listCard]="this.events" 
-                
+                [urlToRedirect]="'produto/'"
                 (changedCard)="onChangedCard($event)">
             </app-list-card>
         </section>

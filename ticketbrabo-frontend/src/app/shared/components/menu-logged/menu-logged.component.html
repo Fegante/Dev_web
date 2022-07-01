@@ -9,7 +9,7 @@
             <img src="assets/images/default_user.png" width="40px">
         </div>
         <div class="info" *ngIf="this.user != null">
-            <div class="name">{{ this.user.nome }}</div>
+            <div class="name">{{ this.user.nome.split(' ')[0] }}</div>
             <div class="role">{{ this.user.role || 'Produtor' }}</div>
         </div>
         <div class="info" *ngIf="this.user == null">

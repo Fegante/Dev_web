@@ -11,7 +11,16 @@ async function getByWhere(where: {}) {
     return reservaEstoqueRepo.getByWhere(where);
 }
 
+async function getOneById(token: number, id: number) {
+    return reservaEstoqueRepo.getOneById(token,id);
+}
+
+// function getOneById(id: number): Promise<Evento | null> {
+//     return eventoRepo.getOneById(id);
+// }
+
 export default {
     getAll,
-    getByWhere
+    getByWhere,
+    getOneById
 } as const;
