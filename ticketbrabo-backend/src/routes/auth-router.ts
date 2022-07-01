@@ -23,7 +23,12 @@ router.post(paths.type, async (req, res) => {
         const urlRedirect = `${String(process.env.REDIRECT_TO_UI)}/`;
         return res.status(UNAUTHORIZED).send();
     }
-    return res.send({type: "success", data: token});
+
+    if(enumType == StrategyTypeEnum.LOCAL) {
+        return res.send({type: "success", data: token});
+    }
+
+    return res.redirect(`${String(process.env.REDIRECT_TO_UI)}/authToken/${token}`);
 });
 
 router.get(paths.type, async (req, res) => {
@@ -31,14 +36,7 @@ router.get(paths.type, async (req, res) => {
 
     try {
         const token = await authService.authentication(enumType, req.query);
-      
-        res.cookie(COOKIE_NAME, token, {
-            maxAge: 90000,
-            secure: false,
-            httpOnly: false,
-        });
-
-        return res.redirect(`${String(process.env.REDIRECT_TO_UI)}`);
+        return res.redirect(`${String(process.env.REDIRECT_TO_UI)}/authToken/${token}`);
 
     } catch(err) {
         console.log(err)

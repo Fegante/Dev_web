@@ -19,7 +19,6 @@ import { FormResourceService } from "./services/form-resource.service";
 import { Interceptor } from "./services/interceptor";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MessageSnackbarComponent } from "./components/message-snackbar/message-snackbar.component";
-import { MessageService } from "./services/message.service";
 
 
 @NgModule({
@@ -53,7 +52,7 @@ import { MessageService } from "./services/message.service";
             provide: HTTP_INTERCEPTORS,
             multi: true
         },
-        MessageService
+        
     ],
     exports: [
         SidebarComponent,

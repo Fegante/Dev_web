@@ -24,7 +24,10 @@ async function findByEmailOrOauthId(email: string, id: string) {
                 {
                     pessoa: { oauthIdentification: id }
                 }
-            ]
+            ],
+            relations: {
+                pessoa: true
+            }
         });
 }
 

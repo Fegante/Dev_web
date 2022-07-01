@@ -15,7 +15,6 @@ export class MessageSnackbarComponent implements OnInit {
   snackBarText!: string;
 
   constructor(private _snackBar: MatSnackBar, private messageService: MessageService) { 
-   
   }
 
   openSnackBar() {

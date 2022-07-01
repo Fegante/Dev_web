@@ -16,30 +16,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if(this.authNotificationService.user) {
+      this.addMenuItems(this.authNotificationService.user);
+    }
+    
     this.subscription = this.authNotificationService.addObserver(({user}: any) => {
-      if (user.isAuth) {
-        this.menuItems = [{
-          class: "iconEvento",
-          text: "Eventos",
-          iconActive: 'iconEventoActiveIcon',
-          textActive: 'iconActive',
-          routerLink: '/evento'
-        },
-        {
-          class: "iconProduto",
-          text: "Produtos",
-          textActive: 'iconActive',
-          routerLink: '/produto/new'
-        },
-        {
-          class: "iconProduto",
-          text: "Estoque Total",
-          textActive: 'iconActive',
-          routerLink: '/estoque'
-        }];
-      } else {
-        this.menuItems = menuNotAtuhResource;
-      }
+        this.addMenuItems(user);
     });
     
     this.menuItems = menuNotAtuhResource;
@@ -47,5 +29,31 @@ export class SidebarComponent implements OnInit, OnDestroy {
   
   ngOnDestroy(): void {
     this.authNotificationService.removeObserver(this.subscription);
+  }
+
+  addMenuItems(user: any) {
+    if(user) {
+      this.menuItems = [{
+        class: "iconEvento",
+        text: "Eventos",
+        iconActive: 'iconEventoActiveIcon',
+        textActive: 'iconActive',
+        routerLink: '/evento'
+      },
+      {
+        class: "iconProduto",
+        text: "Produtos",
+        textActive: 'iconActive',
+        routerLink: '/produto/new'
+      },
+      {
+        class: "iconProduto",
+        text: "Estoque Total",
+        textActive: 'iconActive',
+        routerLink: '/estoque'
+      }];
+    } else {
+      this.menuItems = menuNotAtuhResource;
+    }
   }
 }

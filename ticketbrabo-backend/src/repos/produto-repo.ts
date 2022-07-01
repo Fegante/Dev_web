@@ -19,6 +19,14 @@ async function addOne(produto: Produto): Promise<Produto>{
     .save(produto);
 }
 
+async function getStatistic(produtorId: number) {
+    return DatabaseSingleton.Instance
+    .getRepository(Produto)
+    .find({
+        
+    });
+}
+
 export default {
     update,
     getOne,

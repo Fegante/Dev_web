@@ -14,4 +14,18 @@ export class AuthenticationService {
     isAccessTokenExpired(token: string | null) {
         return !token && this.jwtHelper.isTokenExpired(token as string);
     }
+
+    getUserByToken() {
+        const token = this.getTokenFromLocalStorage();
+        return token ? this.jwtHelper.decodeToken(token) : null;
+    }
+
+    isTokeNotNull() {
+        return this.getTokenFromLocalStorage() != null && this.getTokenFromLocalStorage() != '';
+    }
+
+    getTokenFromLocalStorage() {
+        return localStorage.getItem("authToken");
+    }
+    
 }

@@ -3,17 +3,27 @@
         <mat-icon class="arrowBack" (click)="onClickBack()">arrow_back</mat-icon>
         <h1>Cadastrar</h1>
     </header>
-    <form [formGroup]="this.form" (ngSubmit)="onSubmit()">
+    <form *ngIf="this.form" [formGroup]="this.form" (ngSubmit)="onSubmit()">
         <div *ngFor="let input of this.schema.fields">
             <label for="{{input.id}}">{{input.label}}:</label>
-            <div *ngIf="input.group; else elseBlock" style="display: contents;"> 
+            <div *ngIf="input.group; else elseBlock" style="display: contents;">
                 <div formGroupName="{{input.group}}" style="display: contents;">
-                    <input [formControlName]="input.name" [type]="input.type" [name]="input.name" [id]="input.id"
+                    <input 
+                        [formControlName]="input.name" 
+                        [type]="input.type" 
+                        [name]="input.name" 
+                        [id]="input.id"
+                        [value]="input.value"
                         [placeholder]="input.placeholder">
                 </div>
             </div>
             <ng-template #elseBlock>
-                <input [formControlName]="input.name" [type]="input.type" [name]="input.name" [id]="input.id"
+                <input 
+                    [formControlName]="input.name" 
+                    [type]="input.type" 
+                    [name]="input.name" 
+                    [id]="input.id"
+                    [value]="input.value"
                     [placeholder]="input.placeholder">
             </ng-template>
 

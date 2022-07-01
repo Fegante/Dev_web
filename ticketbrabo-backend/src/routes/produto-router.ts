@@ -3,6 +3,7 @@ import { Produto } from "@models/produto-model";
 import categoriaProdutoRepo from "@repos/categoriaProduto-repo";
 import produtoRepo from "@repos/produto-repo";
 import produtoService from "@services/produto-service";
+import { AuthorizationService } from "@shared/authorization/authorization-service";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import { verify } from "jsonwebtoken";
@@ -14,6 +15,7 @@ const {CREATED, OK} = StatusCodes;
 export const paths = {
     add: '/add',
     query: '/query'
+    getStatistic: '/estatistica'
 };
 
 router.get(paths.add, async (req: Request, res: Response) => {
@@ -54,7 +56,6 @@ router.get(paths.query, async (req: Request, res: Response) => {
     console.log(await produtoRepo.getAll(token.id))
 
     return res.send( {data: await produtoRepo.getAll(token.id)});
-
 });
 
 export default router;

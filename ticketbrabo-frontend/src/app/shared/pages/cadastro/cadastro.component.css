@@ -39,7 +39,7 @@ header > * {
     
 }
 
-form div{
+form div {
     display: grid;
     grid-template-columns: minmax(50px, 130px) auto;
     column-gap: 30px;
