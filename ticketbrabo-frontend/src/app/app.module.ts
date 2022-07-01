@@ -24,7 +24,7 @@ import { AuthenticationService } from './shared/services/authentication.service'
   ],
   providers: [
     CanActivateRouteGuard,
-    AuthenticationService
+    AuthenticationService,
   ],
   bootstrap: [AppComponent]
 })

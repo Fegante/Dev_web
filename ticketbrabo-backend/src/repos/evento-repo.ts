@@ -33,5 +33,5 @@ export default {
     add,
     get,
     getByProdutorId,
-    getOneById
+    getOneById,
 } as const;

@@ -1,4 +1,5 @@
 import eventoService from "@services/evento-service";
+import localidadeService from "@services/localidade-service";
 import { AuthorizationService } from "@shared/authorization/authorization-service";
 import { Router, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
@@ -12,11 +13,24 @@ const {CREATED, OK, NOT_ACCEPTABLE} = StatusCodes;
 export const paths = {
     add: '/add',
     get: '/query',
-    getById: '/:id'
+    getById: '/:id',
+    update: '/update/:id'
 };
 
+router.patch(paths.update, AuthorizationService.isValidToken, async (req: Request, res: Response) => {
+    const token = verify(req.headers.token as string,process.env.JWT_SECRET as string) as any
+    const id = req.params.id;
+    const evento = req.body;
+    
+    evento.id = Number.parseInt(id);
+    evento.localidade = await localidadeService.getIfExits(evento.localidade);
 
-router.post(paths.add, async (req: Request, res: Response) => {
+    evento.produtor = token;
+    await eventoService.addOne(evento);
+    return res.status(CREATED).end();
+});
+
+router.post(paths.add, AuthorizationService.isValidToken, async (req: Request, res: Response) => {
     const token = verify(req.headers.token as string,process.env.JWT_SECRET as string) as any
     
     const evento = req.body;

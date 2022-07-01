@@ -14,7 +14,7 @@ import { MenuLoggedService } from "./menu-logged.service";
 
 export class MenuLoggedComponent implements OnInit, OnDestroy{
     
-    public user!: UserModel;
+    public user!: UserModel | null;
     private subscription: any;
     constructor(
         private authNotificationService: AuthNotificationService,
@@ -35,6 +35,7 @@ export class MenuLoggedComponent implements OnInit, OnDestroy{
     }
 
     ngOnInit(): void {
+        this.user = this.authNotificationService.user;
         this.subscription = this.authNotificationService.addObserver(({user}: any) => {
             this.user = user;
         });
